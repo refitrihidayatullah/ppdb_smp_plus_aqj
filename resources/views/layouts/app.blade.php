@@ -12,6 +12,14 @@
     <link rel="stylesheet" href="{{ asset('plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css') }}">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
+    <!-- font awesome -->
+     <script src="https://kit.fontawesome.com/6e0c65f34f.js" crossorigin="anonymous"></script>
+    <!-- font awesome -->
+<!-- jquery datatable -->
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/2.0.10/css/dataTables.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/2.0.10/js/dataTables.js"></script> -->
+
 
     <!-- google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
