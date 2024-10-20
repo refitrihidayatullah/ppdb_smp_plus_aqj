@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'PPDB SMP PLUS Al-Qodiri Jember')
 
 @section('content')
  
