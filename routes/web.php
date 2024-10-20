@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\UserController;
+use  App\Http\Controllers\TestSchoolController;
+use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +21,11 @@ Route::get('/', function () {
 });
 
 Route::get('/user', [UserController::class, 'index']);
+
+
+// dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard'); 
+
+// Test School
+Route::get('/test-school', [TestSchoolController::class, 'index'])->name('test-school');
+Route::post('/test-school/get-school-data', [TestSchoolController::class, 'getSchoolData'])->name('test-school/get-school-data');
