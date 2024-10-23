@@ -12,7 +12,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::whereIn('level', ['admin', 'panitia'])->get();   
         return view('pages.user.index', compact('users'));
     }
 
@@ -64,7 +64,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::find($id);
+        $user = User::where('id', $id)->whereIn('level', ['admin', 'panitia'])->first();
         return view('pages.user.detail_user', compact('user'));
     }
 
@@ -73,7 +73,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $user = User::find($id);
+        $user = User::where('id', $id)->whereIn('level', ['admin', 'panitia'])->first();
         return view('pages.user.edit_user', compact('user'));
     }
 
@@ -83,10 +83,13 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
+
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'level' => 'required',
             'no_hp_panitia' => 'required|numeric|digits:12|unique:users,no_hp_panitia,'.$id,
+            'password' => 'required|confirmed',
+
         ],
         [
             'name.required' => 'Nama harus diisi',
@@ -98,13 +101,16 @@ class UserController extends Controller
             'no_hp_panitia.numeric' => 'No HP harus berupa angka',
             'no_hp_panitia.digits' => 'No HP harus berupa 12 digit',
             'no_hp_panitia.unique' => 'No HP sudah terdaftar',
+            'password.required' => 'Password harus diisi',
+            'password.confirmed' => 'Password tidak cocok',
         ]);
 
-        $user = User::find($id);
+        $user = User::where('id', $id)->whereIn('level', ['admin', 'panitia'])->first();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->level = $request->level;
         $user->no_hp_panitia = $request->no_hp_panitia;
+        $user->password = bcrypt($request->password);
         $user->save();
 
         return redirect()->route('user');

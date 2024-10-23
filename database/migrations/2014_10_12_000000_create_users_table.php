@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('no_hp_panitia')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('level',  ['admin' , 'panitia']);
+            $table->enum('level',  ['admin' , 'panitia , siswa']);
             $table->rememberToken();
             $table->timestamps();
         });

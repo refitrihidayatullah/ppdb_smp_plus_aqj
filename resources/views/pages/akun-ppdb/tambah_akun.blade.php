@@ -7,10 +7,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <h4 class="card-header text-center">{{ __('Tambah User') }}</h4>
+                <h4 class="card-header text-center">{{ __('Tambah Akun PPDB') }}</h4>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('user.store') }}">
+                    <form method="POST" action="{{ route('akun-ppdb.store') }}">
                         @csrf
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama') }}</label>
@@ -40,13 +40,13 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="level" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
 
                             <div class="col-md-6">
                                 <select id="level" class="form-control @error('level') is-invalid @enderror" name="level" required>
                                     <option value="">Pilih Role</option>
-                                <option value="admin" {{ old('level') == 'admin' ? 'selected' : '' }}>Admin</option>
+                                    <option value="admin" {{ old('level') == 'admin' ? 'selected' : '' }}>Admin</option>
                                     <option value="panitia" {{ old('level') == 'panitia' ? 'selected' : '' }}>Panitia</option>
                                 </select>
 
@@ -56,7 +56,7 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group row">
                             <label for="no_hp_panitia" class="col-md-4 col-form-label text-md-right">{{ __('No HP') }}</label>

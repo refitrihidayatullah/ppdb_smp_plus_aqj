@@ -84,11 +84,12 @@ return new class extends Migration
             $table->string('ktp_orang_tua');
 
             // autentikasi
-            $table->string('email')->unique();
-            $table->string('no_hp_siswa')->unique();
-            $table->string('password');
-            $table->string('level');
+            // $table->string('email')->unique();
+            // $table->string('no_hp_siswa')->unique();
+            // $table->string('password');
+            // $table->string('level');
             // status validasi data
+            
             $table->enum('status_validasi', ['Belum Validasi', 'Sudah Validasi']);
             
             $table->timestamps();
