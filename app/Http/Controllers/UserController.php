@@ -12,10 +12,8 @@ class UserController extends Controller
      */
     public function index()
     {
-
-        // $user = DB::table('users')->get();
-        $users = User::all();
-        return view('users.index', compact('users'));
+        $users = User::whereIn('level', ['admin', 'panitia'])->get();   
+        return view('pages.user.index', compact('users'));
     }
 
     /**
@@ -23,7 +21,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('pages.user.tambah_user');
     }
 
     /**
@@ -34,16 +32,31 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
+            'level' => 'required',
+            'no_hp_panitia' => 'required|numeric|digits:12|unique:users',
             'password' => 'required|confirmed',
+        ],
+        [
+            'name.required' => 'Nama harus diisi',
+            'email.required' => 'Email harus diisi',
+            'email.email' => 'Format email tidak valid',
+            'email.unique' => 'Email sudah terdaftar',
+            'level.required' => 'Role harus diisi',
+            'no_hp_panitia.required' => 'No HP harus diisi',
+            'no_hp_panitia.numeric' => 'No HP harus berupa angka',
+            'no_hp_panitia.digits' => 'No HP harus berupa 12 digit',
+            'no_hp_panitia.unique' => 'No HP sudah terdaftar',
         ]);
 
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->level = $request->level;
+        $user->no_hp_panitia = $request->no_hp_panitia;
         $user->password = bcrypt($request->password);
         $user->save();
 
-        return redirect()->route('users.index');
+        return redirect()->route('user');
     }
 
     /**
@@ -51,8 +64,8 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::find($id);
-        return view('users.show', compact('user'));
+        $user = User::where('id', $id)->whereIn('level', ['admin', 'panitia'])->first();
+        return view('pages.user.detail_user', compact('user'));
     }
 
     /**
@@ -60,8 +73,8 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $user = User::find($id);
-        return view('users.edit', compact('user'));
+        $user = User::where('id', $id)->whereIn('level', ['admin', 'panitia'])->first();
+        return view('pages.user.edit_user', compact('user'));
     }
 
     /**
@@ -70,16 +83,37 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
+
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
+            'level' => 'required',
+            'no_hp_panitia' => 'required|numeric|digits:12|unique:users,no_hp_panitia,'.$id,
+            'password' => 'required|confirmed',
+
+        ],
+        [
+            'name.required' => 'Nama harus diisi',
+            'email.required' => 'Email harus diisi',
+            'email.email' => 'Format email tidak valid',
+            'email.unique' => 'Email sudah terdaftar',
+            'level.required' => 'Role harus diisi',
+            'no_hp_panitia.required' => 'No HP harus diisi',
+            'no_hp_panitia.numeric' => 'No HP harus berupa angka',
+            'no_hp_panitia.digits' => 'No HP harus berupa 12 digit',
+            'no_hp_panitia.unique' => 'No HP sudah terdaftar',
+            'password.required' => 'Password harus diisi',
+            'password.confirmed' => 'Password tidak cocok',
         ]);
 
-        $user = User::find($id);
+        $user = User::where('id', $id)->whereIn('level', ['admin', 'panitia'])->first();
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->level = $request->level;
+        $user->no_hp_panitia = $request->no_hp_panitia;
+        $user->password = bcrypt($request->password);
         $user->save();
 
-        return redirect()->route('users.index');
+        return redirect()->route('user');
     }
 
     /**
@@ -89,7 +123,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        return redirect()->route('users.index');
+        return redirect()->route('user');
     }
 }
 ?>

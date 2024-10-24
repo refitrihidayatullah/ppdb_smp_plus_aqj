@@ -5,6 +5,7 @@ use  App\Http\Controllers\UserController;
 use  App\Http\Controllers\TestSchoolController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AkunPpdbController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,8 +20,18 @@ use App\Http\Controllers\DashboardController;
 Route::get('/', function () {
     return view('welcome');
 });
+// CRUD User
+Route::get('/user', [UserController::class, 'index'])->name('user');
+Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
+Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
-Route::get('/user', [UserController::class, 'index']);
+// CRUD Akun PPDB
+Route::get('/akun-ppdb', [AkunPpdbController::class, 'index'])->name('akun-ppdb');
+Route::get('/akun-ppdb/create', [AkunPpdbController::class, 'create'])->name('akun-ppdb.create');
+Route::post('/akun-ppdb/store', [AkunPpdbController::class, 'store'])->name('akun-ppdb.store'); 
 
 
 // dashboard
