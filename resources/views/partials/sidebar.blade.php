@@ -28,7 +28,7 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{ route('user') }}">Data Akun Panitia PPDB</a></li>
-                            <li><a href="{{ route('user.create') }}">Tambah Akun Panitia PPDB</a></li>
+                            <!-- <li><a href="{{ route('user.create') }}">Tambah Akun Panitia PPDB</a></li> -->
                         </ul>
                     </li>
                    
