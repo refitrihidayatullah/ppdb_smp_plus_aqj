@@ -12,7 +12,7 @@
                     <hr>
 
                     <!-- <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary mb-3"> +  Tambah User</a> -->
-                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#TambahUser" data-whatever="@mdo">Tambah User</button>
+                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#TambahUser" data-whatever="@mdo"><i class="fa-solid fa-plus"></i> Tambah User</button>
                     <!-- <a href="{{ route('user.create') }}" class="btn btn-sm btn-success mb-3"> Tambah User</a> -->
                     <div class="table-responsive">
                         <table id="dataTable" class="table table-striped table-bordered">
