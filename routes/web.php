@@ -1,11 +1,11 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-use  App\Http\Controllers\UserController;
-use  App\Http\Controllers\TestSchoolController;
-use App\Http\Controllers\SchoolController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\AkunPpdbController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,26 +17,35 @@ use App\Http\Controllers\AkunPpdbController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     // return view('welcome');
+//     echo "ini halaman utama website ppdbnya";
+// });
+
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/register', [AuthController::class, 'register_student'])->name('register.student');
+Route::post('/register', [AuthController::class, 'register_student_process'])->name('register.student.process');
+
+
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware(['check.siswa'])->group(function () {
+    Route::get('form_siswa', function () {
+        return view('siswa.dashboard');
+    })->name('siswa.dashboard');
+
+    Route::get('/ceksis', function () {
+        // return view('welcome');
+        echo "iya ini siswa";
+    });
 });
-// CRUD User
-Route::get('/user', [UserController::class, 'index'])->name('user');
-Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
-Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
-Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
-Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
-Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
-// CRUD Akun PPDB
-Route::get('/akun-ppdb', [AkunPpdbController::class, 'index'])->name('akun-ppdb');
-Route::get('/akun-ppdb/create', [AkunPpdbController::class, 'create'])->name('akun-ppdb.create');
-Route::post('/akun-ppdb/store', [AkunPpdbController::class, 'store'])->name('akun-ppdb.store'); 
-
-
-// dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard'); 
-
-// Test School
-Route::get('/test-school', [TestSchoolController::class, 'index'])->name('test-school');
-Route::post('/test-school/get-school-data', [TestSchoolController::class, 'getSchoolData'])->name('test-school/get-school-data');
+Route::middleware(['check.admin'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+});
