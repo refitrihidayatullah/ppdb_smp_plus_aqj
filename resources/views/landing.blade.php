@@ -55,7 +55,7 @@
                             <a class="nav-link" href="#kontak-kami">Kontak Kami</a>
                         </li>
                     </ul>
-                    <a style="background-color: #022377" class="btn fw-bold text-light" href="{{ route('login') }}" role="button">Login</a>
+                    <a style="background-color: #022377" class="btn fw-bold text-light" href="{{ route('auth') }}" role="button">Login</a>
                 </div>
             </div>
             <!-- Container -->

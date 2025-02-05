@@ -16,7 +16,7 @@ return new class extends Migration
             $table->enum('kelas', ['Siswa Baru Kelas 7', 'Siswa Baru Kelas 8', 'Siswa Baru Kelas 9'])->nullable();;
             $table->enum('domisili', ['Mondok', 'Tidak Mondok'])->nullable();;
             // identitas siswa diisi (siswa)
-            $table->string('nama_siswa');
+            $table->string('nama_siswa')->nullable();
             $table->string('nisn_siswa')->unique()->nullable();
             $table->string('tempat_lahir')->nullable();;
             $table->date('tanggal_lahir')->nullable();;

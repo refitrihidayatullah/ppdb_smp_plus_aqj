@@ -11,7 +11,7 @@ class CheckAdmin
     public function handle(Request $request, Closure $next)
     {
         if (!Auth::guard('admin')->check()) {
-            return redirect('/login')->with('error', 'Anda tidak memiliki akses.');
+            return redirect('/auth')->with('error', 'Anda tidak memiliki akses.');
         }
 
         return $next($request);

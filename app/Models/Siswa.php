@@ -12,6 +12,7 @@ class Siswa extends Model implements Authenticatable
 {
     use HasFactory, AuthenticatableTrait;
 
+    protected $table = 'siswas';
     protected $fillable = [
         'nama_siswa',
         'email',

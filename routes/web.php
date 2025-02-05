@@ -25,12 +25,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/register', [AuthController::class, 'register_student'])->name('register.student');
-Route::post('/register', [AuthController::class, 'register_student_process'])->name('register.student.process');
+Route::post('/check-email', [AuthController::class, 'checkEmail']);
+Route::post('/register_process', [AuthController::class, 'register_student_process'])->name('register_process');
 
 
 
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+Route::get('/auth', [AuthController::class, 'showLoginForm'])->name('auth');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['check.siswa'])->group(function () {

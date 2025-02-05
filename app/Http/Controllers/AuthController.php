@@ -21,49 +21,96 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-        // dd($credentials);
-        if (Auth::guard('siswa')->attempt($credentials)) {
-            return redirect()->intended('/form_siswa');
-        } elseif (Auth::guard('admin')->attempt($credentials)) {
-            return redirect()->intended('/admin/dashboard');
-        }
+    // public function login(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'email' => 'required|email',
+    //         'password' => 'required',
+    //     ]);
+    //     // dd($credentials);
+    //     if (Auth::guard('siswa')->attempt($credentials)) {
+    //         return redirect()->intended('/form_siswa');
+    //     } elseif (Auth::guard('admin')->attempt($credentials)) {
+    //         return redirect()->intended('/admin/dashboard');
+    //     }
 
-        return back()->withErrors([
-            'email' => 'Email atau password salah.',
+    //     return back()->withErrors([
+    //         'email' => 'Email atau password salah.',
+    //     ]);
+    // }
+
+    public function login(Request $request)
+{
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+
+    if (Auth::guard('siswa')->attempt($credentials)) {
+        return response()->json([
+            'success' => true,
+            'redirect_url' => '/form_siswa'
+        ]);
+    } elseif (Auth::guard('admin')->attempt($credentials)) {
+        return response()->json([
+            'success' => true,
+            'redirect_url' => '/admin/dashboard'
         ]);
     }
 
+    return response()->json([
+        'success' => false,
+        'message' => 'Email atau password salah.'
+    ], 401);
+}
     // public function register_student()
     // {
     //     return view("auth.register");
     // }
-    public function register_student_process(Request $request)
-    {
 
+
+
+  public function register_student_process(Request $request)
+    {
         // Validasi data yang diterima
         $request->validate([
             'nama_siswa' => 'required|string|max:255',
             'email' => 'required|email|unique:siswas,email',
             'password' => 'required|string|min:8|confirmed', // Pastikan password dan repeat password sama
+        ],
+    
+        [
+            'email.unique' => 'Email yang anda masukkan sudah terdaftar', // Pesan kustom untuk email yang tidak unik
         ]);
+
+    
 
         // Membuat siswa baru
         Siswa::create([
-            'nama' => $request->nama_siswa,
+            'nama_siswa' => $request->nama_siswa,
             'email' => $request->email,
-            'password' => Hash::make($request->password), // Hash password sebelum disimpan
+            'password' => bcrypt($request->password), // Enkripsi password
         ]);
 
-        // Redirect ke halaman login atau dashboard setelah berhasil registrasi
-        return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
+        // Mengembalikan respons sukses
+        return response()->json(['success' => true, 'message' => 'Pendaftaran berhasil!']);
     }
 
+
+    // email check
+
+    public function checkEmail(Request $request)
+    {
+    $request->validate([
+        'email' => 'required|email',
+    ]);
+
+    $exists = Siswa::where('email', $request->email)->exists();
+
+    return response()->json(['exists' => $exists]);
+    }
+
+    
     public function logout(Request $request)
     {
         if (Auth::guard('siswa')->check()) {
@@ -75,6 +122,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login'); // Redirect ke halaman login setelah logout
+        return redirect('/auth'); // Redirect ke halaman login setelah logout
     }
 }
