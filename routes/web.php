@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -30,11 +32,18 @@ Route::post('/register_process', [AuthController::class, 'register_student_proce
 
 
 
+// testing template
+Route::get('/dashboard_admin', [DashboardController::class,  'index'])->name('dashboard');
+
 Route::get('/auth', [AuthController::class, 'showLoginForm'])->name('auth');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['check.siswa'])->group(function () {
+    Route::get('/dashboard_admin', [DashboardController::class,  'index'])->name('dashboard');
+
+
+
     Route::get('form_siswa', function () {
         return view('siswa.dashboard');
     })->name('siswa.dashboard');
@@ -46,6 +55,16 @@ Route::middleware(['check.siswa'])->group(function () {
 });
 
 Route::middleware(['check.admin'])->group(function () {
+
+    // CRUD admin
+    // Route::get('/user', [DashboardController::class,  'index'])->name('dashboard');
+
+    // CRUD data akun siswa
+
+    // lihat data siswa
+
+
+
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
