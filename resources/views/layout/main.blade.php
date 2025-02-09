@@ -298,8 +298,8 @@
                             <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Akun Administator</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./app-profile.html">Data Akun Admin</a></li>
-                            <li><a href="./app-calender.html">Tambah Akun Admin</a></li>
+                            <li><a href="{{ route('users') }}">Data Akun Admin</a></li>
+                            {{-- <li><a href="{{ route('users.tambah') }}">Tambah Akun Admin</a></li> --}}
                         </ul>
                     </li>
 

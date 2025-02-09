@@ -63,17 +63,8 @@ Route::middleware(['check.admin'])->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('users');
     Route::get('/tambah_user', [UserController::class, 'create'])->name('tambah_user');
     Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
-
-    // Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
     Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
-
-    Route::delete(
-        '/user/{id}',
-        [UserController::class, 'destroy']
-    )->name('user.destroy');
-
-
-
+    Route::delete('/user/delete/{id}', [UserController::class, 'destroy'])->name('user.destroy');
     // get_json admin
     Route::get('/get_user', [UserController::class, 'get_user'])->name('get_user');
 
