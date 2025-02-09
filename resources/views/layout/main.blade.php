@@ -5,7 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    {{-- csrf token --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    {{-- csrf token --}}
     <!-- theme meta -->
     <meta name="theme-name" content="quixlab" />
 
@@ -24,6 +27,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     {{-- jquery --}}
+
+    {{-- datatable  --}}
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"> --}}
+
+    {{-- datatable  --}}
 
 
     {{-- google font --}}
@@ -413,6 +421,16 @@
 
 
     <script src="{{ asset('dashboard/js/dashboard/dashboard-1.js') }}"></script>
+
+
+    {{-- datatable --}}
+
+    <script src="{{ asset('dashboard/plugins/tables/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('dashboard/plugins/tables/js/datatable/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('dashboard/plugins/tables/js/datatable-init/datatable-basic.min.js') }}"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+    {{-- <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script> --}}
+    {{-- datatable --}}
 
 </body>
 

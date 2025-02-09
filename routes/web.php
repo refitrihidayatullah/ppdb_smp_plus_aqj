@@ -3,7 +3,9 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -33,7 +35,7 @@ Route::post('/register_process', [AuthController::class, 'register_student_proce
 
 
 // testing template
-Route::get('/dashboard_admin', [DashboardController::class,  'index'])->name('dashboard');
+// Route::get('/dashboard_admin', [DashboardController::class,  'index'])->name('dashboard');
 
 Route::get('/auth', [AuthController::class, 'showLoginForm'])->name('auth');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -55,8 +57,27 @@ Route::middleware(['check.siswa'])->group(function () {
 });
 
 Route::middleware(['check.admin'])->group(function () {
-
+    // routes ke dashboard
+    Route::get('/dashboard_admin', [DashboardController::class,  'index'])->name('dashboard');
     // CRUD admin
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::get('/tambah_user', [UserController::class, 'create'])->name('tambah_user');
+    Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+
+    // Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+
+    Route::delete(
+        '/user/{id}',
+        [UserController::class, 'destroy']
+    )->name('user.destroy');
+
+
+
+    // get_json admin
+    Route::get('/get_user', [UserController::class, 'get_user'])->name('get_user');
+
+
     // Route::get('/user', [DashboardController::class,  'index'])->name('dashboard');
 
     // CRUD data akun siswa
