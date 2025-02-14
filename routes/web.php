@@ -61,7 +61,8 @@ Route::middleware(['check.admin'])->group(function () {
     Route::get('/dashboard_admin', [DashboardController::class,  'index'])->name('dashboard');
     // CRUD admin
     Route::get('/users', [UserController::class, 'index'])->name('users');
-    Route::get('/tambah_user', [UserController::class, 'create'])->name('tambah_user');
+    Route::get('/users/tambah_user', [UserController::class, 'create'])->name('tambah_user');
+    Route::post('users/tambah_user_proses', [UserController::class, 'store'])->name('store_user');
     Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
     Route::delete('/user/delete/{id}', [UserController::class, 'destroy'])->name('user.destroy');

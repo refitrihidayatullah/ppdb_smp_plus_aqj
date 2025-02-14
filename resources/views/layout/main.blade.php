@@ -299,7 +299,7 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{ route('users') }}">Data Akun Admin</a></li>
-                            {{-- <li><a href="{{ route('users.tambah') }}">Tambah Akun Admin</a></li> --}}
+                            <li><a href="{{ route('tambah_user') }}">Tambah Akun Admin</a></li>
                         </ul>
                     </li>
 

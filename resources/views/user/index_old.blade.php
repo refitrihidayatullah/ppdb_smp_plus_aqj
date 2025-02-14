@@ -124,10 +124,7 @@
 
         <!-- Include jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        {{-- sweetalert --}}
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        {{-- sweetalert --}}
 
 <script>
     $.ajaxSetup({
@@ -138,54 +135,95 @@
 </script>
 
 
-      <script>
-    $(document).ready(function() {
-        var table = $('#userTable').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: {
-                url: '{{ route('get_user') }}',
-                type: 'GET',
-                error: function(xhr, error, code) {
-                    console.error("Error loading data: ", error);
-                    alert("Terjadi kesalahan saat memuat data. Silakan coba lagi.");
-                }
-            },
-            columns: [
-                { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-                { data: 'name', name: 'name' },
-                { data: 'no_hp', name: 'no_hp' },
-                { data: 'email', name: 'email' },
-                { data: 'action', name: 'action', orderable: false, searchable: false } // Jika Anda memiliki kolom aksi
-            ],
-            order: [[1, 'asc'], [2, 'asc']], // Mengurutkan berdasarkan kolom name dan no_hp
-            pageLength: 10, // Menentukan jumlah baris per halaman
-            lengthMenu: [10, 25, 50, 100], // Opsi untuk jumlah baris per halaman
+        <script>
+
+
+
+            $(document).ready(function() {
+    var table = $('#userTable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: '{{ route('get_user') }}',
+            type: 'GET',
+        },
+        columns: [
+            { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+            { data: 'name', name: 'name' },
+            { data: 'no_hp', name: 'no_hp' },
+            { data: 'email', name: 'email' },
+            { data: 'action', name: 'action', orderable: false, searchable: false }
+        ]
+    });
+
+    // Handle edit user
+    $('#userTable').on('click', '.edit-user', function() {
+        var userId = $(this).data('id');
+        // Lakukan AJAX untuk mendapatkan data pengguna berdasarkan ID
+        $.ajax({
+            url: '/user/' + userId + '/edit', // Pastikan Anda memiliki route ini
+            type: 'GET',
+            success: function(data) {
+                // Tampilkan data di form ubah pengguna
+                $('#editUserModal').modal('show'); // Tampilkan modal
+                $('#userId').val(data.id);
+                $('#userName').val(data.name);
+                $('#userPhone').val(data.no_hp);
+                $('#userEmail').val(data.email);
+            }
         });
     });
 
-     $(document).on('click', '.delete-btn', function(e) {
-            e.preventDefault();
-            var userId = $(this).data('id');
-            var form = $('#delete-form-' + userId);
+ // Event listener untuk tombol "Simpan Perubahan"
+    $('#updateUserBtn').on('click', function() {
+        var userId = $('#userId').val();
+        var formData = $('#editUserForm').serialize(); // Ambil data dari form
 
-            Swal.fire({
-                title: 'Apakah Anda yakin?',
-                text: "Anda tidak akan dapat mengembalikan data ini!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, hapus!',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
+        $.ajax({
+            url: '/user/' + userId, // Ganti dengan URL update yang sesuai
+            type: 'PUT',
+            data: formData,
+
+            success: function(response) {
+                $('#editUserModal').modal('hide'); // Sembunyikan modal
+                table.ajax.reload(); // Reload tabel
+                alert('Data pengguna berhasil diperbarui!'); // Tampilkan pesan sukses
+            },
+            error: function(xhr) {
+                alert('Terjadi kesalahan saat memperbarui data pengguna.');
+            }
+        });
+    });
+
+
+    // Handle delete user
+    $('#userTable').on('click', '.delete-user', function() {
+      var id = $(this).data('id'); // Ambil ID pengguna dari data attribute
+        var el = $(this); // Simpan referensi ke elemen tombol
+
+        // Konfirmasi penghapusan
+        if (confirm('Apakah Anda yakin ingin menghapus pengguna ini?')) {
+            $.ajax({
+                    url: '{{ route('user.destroy', '') }}/' + id, // Ganti dengan route yang sesuai
+                type: 'DELETE',
+                dataType: 'JSON',
+                data: {
+                    '_token': '{{ csrf_token() }}', // Sertakan token CSRF
+                },
+                success: function(response) {
+                    // Hapus baris dari tabel
+                    table.row(el.closest('tr')).remove().draw();
+                    console.log('DELETED');
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText);
                 }
             });
-        });
+        }
+    });
+});
 
-</script>
+        </script>
 
 
 

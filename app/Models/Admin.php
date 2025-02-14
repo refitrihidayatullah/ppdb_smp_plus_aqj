@@ -12,8 +12,9 @@ class Admin extends Model implements Authenticatable
     use HasFactory, AuthenticatableTrait;
 
     protected $fillable = [
-        'nama',
+        'name',
         'email',
+        'no_hp',
         'password',
     ];
 

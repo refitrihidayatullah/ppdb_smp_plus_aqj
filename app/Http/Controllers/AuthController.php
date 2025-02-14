@@ -40,29 +40,29 @@ class AuthController extends Controller
     // }
 
     public function login(Request $request)
-{
-    $credentials = $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-    if (Auth::guard('siswa')->attempt($credentials)) {
+        if (Auth::guard('siswa')->attempt($credentials)) {
+            return response()->json([
+                'success' => true,
+                'redirect_url' => '/form_siswa'
+            ]);
+        } elseif (Auth::guard('admin')->attempt($credentials)) {
+            return response()->json([
+                'success' => true,
+                'redirect_url' => '/admin/dashboard'
+            ]);
+        }
+
         return response()->json([
-            'success' => true,
-            'redirect_url' => '/form_siswa'
-        ]);
-    } elseif (Auth::guard('admin')->attempt($credentials)) {
-        return response()->json([
-            'success' => true,
-            'redirect_url' => '/admin/dashboard'
-        ]);
+            'success' => false,
+            'message' => 'Email atau password salah.'
+        ], 401);
     }
-
-    return response()->json([
-        'success' => false,
-        'message' => 'Email atau password salah.'
-    ], 401);
-}
     // public function register_student()
     // {
     //     return view("auth.register");
@@ -70,20 +70,22 @@ class AuthController extends Controller
 
 
 
-  public function register_student_process(Request $request)
+    public function register_student_process(Request $request)
     {
         // Validasi data yang diterima
-        $request->validate([
-            'nama_siswa' => 'required|string|max:255',
-            'email' => 'required|email|unique:siswas,email',
-            'password' => 'required|string|min:8|confirmed', // Pastikan password dan repeat password sama
-        ],
-    
-        [
-            'email.unique' => 'Email yang anda masukkan sudah terdaftar', // Pesan kustom untuk email yang tidak unik
-        ]);
+        $request->validate(
+            [
+                'nama_siswa' => 'required|string|max:255',
+                'email' => 'required|email|unique:siswas,email|unique:admins,email',
+                'password' => 'required|string|min:8|confirmed', // Pastikan password dan repeat password sama
+            ],
 
-    
+            [
+                'email.unique' => 'Email yang anda masukkan sudah terdaftar', // Pesan kustom untuk email yang tidak unik
+            ]
+        );
+
+
 
         // Membuat siswa baru
         Siswa::create([
@@ -101,16 +103,16 @@ class AuthController extends Controller
 
     public function checkEmail(Request $request)
     {
-    $request->validate([
-        'email' => 'required|email',
-    ]);
+        $request->validate([
+            'email' => 'required|email',
+        ]);
 
-    $exists = Siswa::where('email', $request->email)->exists();
+        $exists = Siswa::where('email', $request->email)->exists();
 
-    return response()->json(['exists' => $exists]);
+        return response()->json(['exists' => $exists]);
     }
 
-    
+
     public function logout(Request $request)
     {
         if (Auth::guard('siswa')->check()) {
