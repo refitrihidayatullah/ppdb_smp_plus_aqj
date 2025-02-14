@@ -3,8 +3,10 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -63,11 +65,23 @@ Route::middleware(['check.admin'])->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('users');
     Route::get('/users/tambah_user', [UserController::class, 'create'])->name('tambah_user');
     Route::post('users/tambah_user_proses', [UserController::class, 'store'])->name('store_user');
-    Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
-    Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('/users/{id}', [UserController::class, 'update'])->name('user.update');
     Route::delete('/user/delete/{id}', [UserController::class, 'destroy'])->name('user.destroy');
     // get_json admin
     Route::get('/get_user', [UserController::class, 'get_user'])->name('get_user');
+
+    // Route CRUD Data Siswa
+    Route::get('/data_siswa', [SiswaController::class, 'index'])->name('data_siswa');
+    Route::get('/data_siswa/tambah_siswa', [SiswaController::class, 'create'])->name('tambah_siswa');
+    Route::post('data_siswa/tambah_siswa_proses', [SiswaController::class, 'store'])->name('store_siswa');
+    Route::get('/data_siswa/{id}/edit', [SiswaController::class, 'edit'])->name('sisw.edit');
+    Route::put('/data_siswa/{id}', [SiswaController::class, 'update'])->name('siswa.update');
+    Route::delete('/data_siswa/delete/{id}', [SiswaController::class, 'destroy'])->name('siswa.destroy');
+    // Get Json Data Siswa
+    Route::get('/get_siswa', [SiswaController::class, 'get_siswa'])->name('get_siswa');
+
+
 
 
     // Route::get('/user', [DashboardController::class,  'index'])->name('dashboard');

@@ -43,30 +43,6 @@ class UserController extends Controller
             ->rawColumns(['action']) // Raw columns untuk memastikan HTML tidak di-escape
             ->make(true);
     }
-
-
-    // public function get_user()
-    // {
-
-    //     $users = Admin::select(['id', 'name', 'no_hp', 'email']); // Ambil kolom yang diperlukan
-    //     $csrf_token =  csrf_token();
-    //     return DataTables::of($users)
-    //         ->addIndexColumn() // Menambahkan kolom indeks
-    //         ->addColumn('action', function ($row) {
-    //             return '<div class="btn-group" role="group">
-    //                     <button type="button" class="btn mb-1 btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aksi</button>
-    //                     <div class="dropdown-menu">
-    //                          <a class="dropdown-item edit-user" href="{{route('users.edit')}}" data-id="' . $row->id . '">Ubah</a>
-    //                         <a class="dropdown-item delete-user" href="{{route('users.destroy')}}"   data-id="' . $row->id . '">Hapus</a>
-    //                     </div>
-    //                 </div>';
-    //         })
-    //         ->make(true);
-    // }
-    // $users = Admin::all();
-    // return response()->json($users);
-
-
     /**
      * Show the form for creating a new resource.
      */
@@ -124,12 +100,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    // public function show($id)
-    // {
 
-    //     $user = Admin::find($id);
-    //     return response()->json($user);
-    // }
 
     /**
      * Show the form for editing the specified resource.
