@@ -18,7 +18,7 @@ class SiswaController extends Controller
     {
 
         $cek = Siswa::all();
-        // dd($cek);
+        dd($cek);
 
         // return view('data_siswa.index');
         //
@@ -80,7 +80,7 @@ class SiswaController extends Controller
             'nama_siswa' => 'required|string|max:255',
             'email' => 'required|email|unique:admins,email|unique:siswas,email',
             'password' => 'required|string|min:8|confirmed',
-            'password_confirm' => 'required|same:password',
+            'password_confirmation' => 'required|same:password',
         ], [
             'nama_siswa.required' => 'Nama siswa harus diisi.',
             'nama_siswa.string' => 'Nama siswa harus berupa teks.',
@@ -92,21 +92,21 @@ class SiswaController extends Controller
             'password.string' => 'Password harus berupa teks.',
             'password.min' => 'Password harus setidaknya 8 karakter.',
             'password.confirmed' => 'Konfirmasi password tidak sesuai dengan password.',
-            'password_confirm.required' => 'Konfirmasi password harus diisi.',
-            'password_confirm.same' => 'Konfirmasi password tidak sesuai dengan password.',
+            'password_confirmation.required' => 'Konfirmasi password harus diisi.',
+            'password_confirmation.same' => 'Konfirmasi password tidak sesuai dengan password.',
         ]);
 
 
 
         // Simpan data siswa ke database
-        // Siswa::create([
-        //     'nama_siswa' => $request->nama_siswa,
-        //     'email' => $request->email,
-        //     'password' => bcrypt($request->password),
-        // ]);
+        Siswa::create([
+            'nama_siswa' => $request->nama_siswa,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
 
         // Redirect ke halaman yang diinginkan dengan pesan sukses
-        // return redirect()->route('siswa.index')->with('success', 'Akun siswa berhasil ditambahkan.');
+        return redirect()->route('data_siswa')->with('success', 'Akun siswa berhasil ditambahkan.');
     }
 
 

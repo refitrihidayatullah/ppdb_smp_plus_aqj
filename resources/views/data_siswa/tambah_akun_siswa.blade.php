@@ -51,8 +51,8 @@
     <div class="form-group row">
         <label class="col-lg-4 col-form-label" for="val-confirm-password">Konfirmasi Password <span class="text-danger">*</span></label>
         <div class="col-lg-6">
-            <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="Masukkan Konfirmasi Password">
-            @error('password_confirm')
+            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Masukkan Konfirmasi Password">
+            @error('password_confirmation')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
