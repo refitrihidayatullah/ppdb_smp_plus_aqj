@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
 
-    <title>PPDB SMP Plus Al-Qodiri Jember</title>
+    <title>SPMB SMP Plus Al-Qodiri Jember</title>
     <!-- MDB icon -->
     <link rel="icon" href="{{ asset('landing-page/img/logo-smp.png') }}" type="image/x-icon" />
     <!-- Font Awesome -->
@@ -34,7 +34,7 @@
           <div class="row justify-content-md-start mt-3 mb-3">
             <div class="col-md">
               <img class="mb-3" src="{{ asset('landing-page/img/logo-smp.png') }}" width="80px" alt="" />
-              <h1 class="fw-bold fs-3">PPDB SMP Plus Al-Qodiri Jember</h1>
+              <h1 class="fw-bold fs-3">SPMB SMP Plus Al-Qodiri Jember</h1>
               <p>silakan buat akun PPDB atau login</p>
 
               <p>jika ada permasalahan login bisa menghubungi...</p>

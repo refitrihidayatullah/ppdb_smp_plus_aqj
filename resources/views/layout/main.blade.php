@@ -182,7 +182,8 @@
                            <i class="fa-solid fa-list"></i><span class="nav-text">Data Siswa Terdaftar</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./ui-accordion.html">Lihat Data Siswa</a></li>
+                             <li><a href="{{ route('tambah_siswa'); }}">Tambah Akun Siswa</a></li>
+                            <li><a href="{{ route('data_siswa')}}">Lihat Data Siswa</a></li>
                             <li><a href="./ui-alert.html">Ekspor Data</a></li>
 
                         </ul>
