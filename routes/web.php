@@ -82,6 +82,9 @@ Route::middleware(['check.admin'])->group(function () {
     Route::get('/get_siswa', [SiswaController::class, 'get_siswa'])->name('get_siswa');
 
 
+    Route::get('/test_edit_siswa', [SiswaController::class, 'test_edit'])->name('test_edit_siswa');
+
+
 
 
     // Route::get('/user', [DashboardController::class,  'index'])->name('dashboard');

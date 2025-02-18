@@ -121,8 +121,15 @@ class SiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+
+    public function test_edit()
+    {
+        return view('data_siswa/edit_detail_siswa');
+    }
     public function edit(string $id)
     {
+        return view('data_siswa/edit_detail_siswa');
+
         //
     }
 
