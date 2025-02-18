@@ -17,44 +17,44 @@ class SiswaController extends Controller
     public function index()
     {
 
-        $cek = Siswa::all();
-        dd($cek);
+        // $cek = Siswa::all();
+        // dd($cek);
 
-        // return view('data_siswa.index');
+        return view('data_siswa.index');
         //
     }
 
     public function get_siswa()
     {
-
-
-        $siswa = Siswa::select(['id', 'nama_siswa', 'tempat_lahir', 'tgl_lahir', 'nama_sekolah_asal', 'tahun_daftar', 'status_selesai', 'status_validasi', 'foto_siswa']); // Ambil kolom yang diperlukan
+        $siswa = Siswa::select(['foto_siswa', 'id', 'nama_siswa', 'tempat_lahir', 'tanggal_lahir', 'nama_sekolah_asal', 'tahun_daftar', 'status_selesai', 'status_validasi']); // Ubah urutan kolom untuk menambahkan foto di depan
         $csrf_token = csrf_token();
 
         return DataTables::of($siswa)
             ->addIndexColumn() // Menambahkan kolom indeks
 
-
+            ->addColumn('foto', function ($row) {
+                // Pastikan 'foto_siswa' berisi path atau URL ke foto siswa
+                return '<img src="' . asset('storage/' . $row->foto_siswa) . '" alt="Foto Siswa" style="width: 50px; height: 50px; border-radius: 50%;">';
+            })
 
             ->addColumn('action', function ($row) use ($csrf_token) {
                 return '<div class="btn-group" role="group">
-                        <a href="' . route('siswa.edit', $row->id) . '" class="btn btn-sm btn-warning">
-                            <i class="fa fa-edit"></i>
-                        </a>
-                        <button type="button" class="btn btn-sm btn-danger delete-btn" data-id="' . $row->id . '">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </div>
-                    <form id="delete-form-' . $row->id . '" action="' . route('siswa.destroy', $row->id) . '" method="POST" style="display: none;">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="' . $csrf_token . '">
-                    </form>';
+                    <a href="' . route('siswa.edit', $row->id) . '" class="btn btn-sm btn-warning">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <button type="button" class="btn btn-sm btn-danger delete-btn" data-id="' . $row->id . '">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+                <form id="delete-form-' . $row->id . '" action="' . route('siswa.destroy', $row->id) . '" method="POST" style="display: none;">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="' . $csrf_token . '">
+                </form>';
             })
-            ->rawColumns(['action']) // Raw columns untuk memastikan HTML tidak di-escape
+            ->rawColumns(['foto', 'action']) // Raw columns untuk memastikan HTML tidak di-escape
             ->make(true);
-        // $siswa = Siswa::all();
-        // return DataTables::of($siswa)
     }
+
 
     /**
      * Show the form for creating a new resource.

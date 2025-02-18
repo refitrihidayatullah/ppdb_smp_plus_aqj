@@ -18,9 +18,9 @@
                                 <div class="row">
                     <div class="col-3">
                         <div class="card card-widget">
-                            <div class="card-body gradient-3">
+                            <div class="card-body bg-primary">
                                 <div class="media">
-                                    <span class="card-widget__icon"><i class="icon-home"></i></span>
+                                    <span class="card-widget__icon"><i class="fa-solid fa-file"></i></span>
                                     <div class="media-body">
                                         <h2 class="card-widget__title">520</h2>
                                         <h5 class="card-widget__subtitle">Siswa Terdaftar</h5>
@@ -32,12 +32,12 @@
 
                     <div class="col-3">
                         <div class="card card-widget">
-                            <div class="card-body gradient-4">
+                            <div class="card-body bg-warning">
                                 <div class="media">
-                                    <span class="card-widget__icon"><i class="icon-tag"></i></span>
+                                    <span class="card-widget__icon"><i class="fa-regular fa-hourglass-half"></i></span>
                                     <div class="media-body">
                                         <h2 class="card-widget__title">720</h2>
-                                        <h5 class="card-widget__subtitle">Siswa Tervalidasi</h5>
+                                        <h5 class="card-widget__subtitle">Menunggu Validasi</h5>
                                     </div>
                                 </div>
                             </div>
@@ -46,12 +46,12 @@
 
                     <div class="col-3">
                         <div class="card card-widget">
-                            <div class="card-body gradient-4">
+                            <div class="card-body bg-success ">
                                 <div class="media">
-                                    <span class="card-widget__icon"><i class="icon-emotsmile"></i></span>
+                                    <span class="card-widget__icon"><i class="fa-solid fa-check-double"></i></span>
                                     <div class="media-body">
                                         <h2 class="card-widget__title">1002</h2>
-                                        <h5 class="card-widget__subtitle">Task Completed</h5>
+                                        <h5 class="card-widget__subtitle">Sudah Tervalidasi</h5>
                                     </div>
                                 </div>
                             </div>

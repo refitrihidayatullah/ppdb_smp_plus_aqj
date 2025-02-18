@@ -1,6 +1,6 @@
 @extends('layout.main')
 
-@section('title', 'Data Siswa Terdaftar -  SPMB SMPP Al-Qodiri Jember')
+@section('title', 'Data Siswa Terdaftar - SPMB SMPP Al-Qodiri Jember')
 
 @section('content')
 {{-- ini adalah konten --}}
@@ -17,17 +17,18 @@
                             <div class="card-body">
                                 <h4 class="card-title">Data Siswa</h4>
 
-
                                 <hr>
                                 <div class="table-responsive">
-                                    <table id="userTable" class="table table-striped table-bordered zero-configuration" id="userTable">
+                                    <table id="userTable" class="table table-striped table-bordered zero-configuration">
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
+                                                <th>Foto</th>
                                                 <th>Nama</th>
-                                                <th>No. Hp</th>
-                                                <th>Email</th>
-                                                <th>Aksi</th>
+                                                <th>Tempat, Tanggal Lahir</th>
+                                                <th>Sekolah Asal</th>
+                                                <th>Status Selesai dan Validasi</th>
+                                                <th>Aksi</th> <!-- Tambahkan kolom aksi jika diperlukan -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -46,10 +47,6 @@
             Content body end
         ***********************************-->
 
-
-
-
-
         {{-- modal ubah user --}}
 
         <!-- Include jQuery -->
@@ -57,67 +54,54 @@
         {{-- sweetalert --}}
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        {{-- sweetalert --}}
-{{--
-<script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-</script>
-
-
-      <script>
-    $(document).ready(function() {
-        var table = $('#userTable').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: {
-                url: '{{ route('get_siswa') }}',
-                type: 'GET',
-                error: function(xhr, error, code) {
-                    console.error("Error loading data: ", error);
-                    alert("Terjadi kesalahan saat memuat data. Silakan coba lagi.");
-                }
-            },
-            columns: [
-                { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-                { data: 'name', name: 'name' },
-                { data: 'no_hp', name: 'no_hp' },
-                { data: 'email', name: 'email' },
-                { data: 'action', name: 'action', orderable: false, searchable: false } // Jika Anda memiliki kolom aksi
-            ],
-            order: [[1, 'asc'], [2, 'asc']], // Mengurutkan berdasarkan kolom name dan no_hp
-            pageLength: 10, // Menentukan jumlah baris per halaman
-            lengthMenu: [10, 25, 50, 100], // Opsi untuk jumlah baris per halaman
-        });
-    });
-
-     $(document).on('click', '.delete-btn', function(e) {
-            e.preventDefault();
-            var userId = $(this).data('id');
-            var form = $('#delete-form-' + userId);
-
-            Swal.fire({
-                title: 'Apakah Anda yakin?',
-                text: "Anda tidak akan dapat mengembalikan data ini!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, hapus!',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                }
+        <script>
+            $(document).ready(function() {
+                var table = $('#userTable').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: {
+                        url: '{{ route('get_siswa') }}',
+                        type: 'GET',
+                        error: function(xhr, error, code) {
+                            console.error("Error loading data: ", error);
+                            alert("Terjadi kesalahan saat memuat data. Silakan coba lagi.");
+                        }
+                    },
+                    columns: [
+                        { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+                        { data: 'foto', name: 'foto', orderable: false, searchable: false }, // Kolom foto
+                        { data: 'nama_siswa', name: 'nama_siswa' }, // Kolom nama
+                        { data: 'tempat_lahir', name: 'tempat_lahir' }, // Kolom tempat lahir
+                        { data: 'nama_sekolah_asal', name: 'nama_sekolah_asal' }, // Kolom sekolah asal
+                        { data: 'status_selesai', name: 'status_selesai' }, // Kolom status selesai
+                        { data: 'action', name: 'action', orderable: false, searchable: false } // Kolom aksi
+                    ],
+                    order: [[2, 'asc']], // Mengurutkan berdasarkan kolom nama
+                    pageLength: 10, // Menentukan jumlah baris per halaman
+                    lengthMenu: [10, 25, 50, 100], // Opsi untuk jumlah baris per halaman
+                });
             });
-        });
 
-</script>
+            $(document).on('click', '.delete-btn', function(e) {
+                e.preventDefault();
+                var userId = $(this).data('id');
+                var form = $('#delete-form-' + userId);
 
- --}}
-
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: "Anda tidak akan dapat mengembalikan data ini!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        </script>
 
 @endsection

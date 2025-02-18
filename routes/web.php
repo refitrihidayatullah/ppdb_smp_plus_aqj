@@ -75,7 +75,7 @@ Route::middleware(['check.admin'])->group(function () {
     Route::get('/data_siswa', [SiswaController::class, 'index'])->name('data_siswa');
     Route::get('/data_siswa/tambah_siswa', [SiswaController::class, 'create'])->name('tambah_siswa');
     Route::post('data_siswa/tambah_siswa_proses', [SiswaController::class, 'store'])->name('store_siswa');
-    Route::get('/data_siswa/{id}/edit', [SiswaController::class, 'edit'])->name('sisw.edit');
+    Route::get('/data_siswa/{id}/edit', [SiswaController::class, 'edit'])->name('siswa.edit');
     Route::put('/data_siswa/{id}', [SiswaController::class, 'update'])->name('siswa.update');
     Route::delete('/data_siswa/delete/{id}', [SiswaController::class, 'destroy'])->name('siswa.destroy');
     // Get Json Data Siswa
