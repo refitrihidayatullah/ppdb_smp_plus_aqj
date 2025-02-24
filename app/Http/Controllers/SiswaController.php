@@ -128,10 +128,17 @@ class SiswaController extends Controller
     }
     public function edit(string $id)
     {
-        return view('data_siswa/edit_detail_siswa');
+        $siswa = Siswa::find($id);
+        // dd($siswa);
+        return view('data_siswa/edit_detail_siswa', compact('siswa'));
 
         //
     }
+
+
+    // digunakan untuk kirim hasil form json
+
+    public function send_kelas_dom() {}
 
     /**
      * Update the specified resource in storage.
