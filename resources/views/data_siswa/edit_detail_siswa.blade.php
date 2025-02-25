@@ -339,7 +339,9 @@
                                             <div class="col">
                                                 <select class="form-control" id="provinsi_siswa" name="provinsi_siswa">
                                                     <option value="">Please select</option>
-                                                    <option value="html">HTML</option>
+                                                    @foreach ($provinsi as $ps)
+                                                    <option value="{{$ps->id}}">{{$ps->name}}</option>
+                                                    @endforeach
                                                     <option value="css">CSS</option>
                                                     <option value="javascript">JavaScript</option>
                                                     <option value="angular">Angular</option>
@@ -438,22 +440,71 @@
                                                <label class="col-lg-4 col-form-label" for="val-username">NPSN <span class="text-danger">*</span>
                                             </label>
                                             <div class="col">
-                                                <input type="text" class="form-control" id="npsn_sekolah" name="npsn_sekolah" placeholder="Enter a username..">
+                                                <input type="text" class="form-control" id="npsn_sekolah" name="npsn_sekolah" placeholder="Masukkan NPSN Sekolah" value="{{$siswa->npsn_sekolah_asal}}">
                                             </div>
 
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-username">Username <span class="text-danger">*</span>
+                                            <label class="col-lg-4 col-form-label" for="val-username">Nama Sekolah Asal <span class="text-danger">*</span>
                                             </label>
                                             <div class="col">
-                                                <input type="text" class="form-control" id="val-username" name="val-username" placeholder="Enter a username..">
+                                                <input type="text" class="form-control" id="nama_sekolah_asal" name="nama_sekolah_asal" placeholder="Masukkan Nama Sekolah Asal" value={{$siswa->nama_sekolah_asal}}>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-username">Username <span class="text-danger">*</span>
+                                            <label class="col-lg-4 col-form-label" for="val-username">Jenis Sekolah Asal <span class="text-danger">*</span>
                                             </label>
                                             <div class="col">
-                                                <input type="text" class="form-control" id="val-username" name="val-username" placeholder="Enter a username..">
+                                                <input type="text" class="form-control" id="jenis_sekolah_asal" name="jenis_sekolah_asal" placeholder="Masukkan Jenis Sekolah Asal" value="{{$siswa->jenis_sekolah_asal}}">
+                                            </div>
+                                        </div>
+
+                                          <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Provinsi Sekolah Asal<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col">
+                                                <input type="text" class="form-control" id="alamat_sekolah_provinsi" name="alamat_sekolah_provinsi" placeholder="Masukkan Provinsi Sekolah Asal" value="{{$siswa->alamat_sekolah_provinsi}}">
+                                            </div>
+                                        </div>
+
+                                          <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Kabupaten/Kota Sekolah Asal<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col">
+                                                <input type="text" class="form-control" id="alamat_sekolah_kabupaten" name="alamat_sekolah_kabupaten" placeholder="Masukkan Kabupaten Sekolah Asal" value="{{$siswa->alamat_sekolah_kabupaten}}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Kecamatan Sekolah Asal<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col">
+                                                <input type="text" class="form-control" id="alamat_sekolah_kecamatan" name="alamat_sekolah_kecamatan" placeholder="Masukkan Kecamatan Sekolah Asal" value="{{$siswa->alamat_sekolah_kecamatan}}">
+                                            </div>
+                                        </div>
+
+                                              <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Alamat Lengkap Sekolah Asal<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col">
+                                                <input type="text" class="form-control" id="alamat_sekolah_lengkap" name="alamat_sekolah_lengkap" placeholder="Masukkan Alamat Lengkap Sekolah Asal" value="{{$siswa->alamat_sekolah_lengkap}}">
+                                            </div>
+                                        </div>
+
+                                          <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">No.Peserta Ujian Jenjang SD/MI
+                                            </label>
+                                            <div class="col">
+                                                <input type="number" class="form-control" id="no_peserta_ujian" name="no_peserta_ujian" placeholder="Masukkan Nomor Peserta Ujian (tidak wajib)">
+                                            </div>
+                                        </div>
+
+
+                                          <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Prestasi yang diraih
+                                            </label>
+                                            <div class="col">
+                                                <input type="number" class="form-control" id="prestasi_yang_diraih" name="prestasi_yang_diraih" placeholder="Masukkan Prestasi yang diraih (tidak wajib)">
                                             </div>
                                         </div>
 
@@ -475,17 +526,114 @@
                                         </div>
                                         <div id="identitas_ortu" class="collapse" data-parent="#accordion-one" style="">
                                             <div class="card-body">
-                                             <p class="fw-bold">Data Ayah</p>
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col">
+
+                                                        {{-- FORM DATA AYAH --}}
+                                                   <h4 class="text-center"> Data Ayah </h4>
+
+                                                   <div class="form-validation">
+                                    <form class="form-valide" action="#" method="post" novalidate="novalidate">
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Username <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col">
+                                                <input type="text" class="form-control" id="val-username" name="val-username" placeholder="Enter a username..">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-email">Email <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col">
+                                                <input type="text" class="form-control" id="val-email" name="val-email" placeholder="Your valid email..">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-password">Password <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col">
+                                                <input type="password" class="form-control" id="val-password" name="val-password" placeholder="Choose a safe one..">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-confirm-password">Confirm Password <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col">
+                                                <input type="password" class="form-control" id="val-confirm-password" name="val-confirm-password" placeholder="..and confirm it!">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-suggestions">Suggestions <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col">
+                                                <textarea class="form-control" id="val-suggestions" name="val-suggestions" rows="5" placeholder="What would you like to see?"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-lg-8 ml-auto">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                                    </div>
+                                                    <div class="col">
+
+                                                        {{-- FORM DATA IBU --}}
+                                                   <h4 class="text-center"> Data Ibu </h4>
+                                                   <div class="form-validation">
+                                    <form class="form-valide" action="#" method="post" novalidate="novalidate">
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Username <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col">
+                                                <input type="text" class="form-control" id="val-username" name="val-username" placeholder="Enter a username..">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-email">Email <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col">
+                                                <input type="text" class="form-control" id="val-email" name="val-email" placeholder="Your valid email..">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-password">Password <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col">
+                                                <input type="password" class="form-control" id="val-password" name="val-password" placeholder="Choose a safe one..">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-confirm-password">Confirm Password <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col">
+                                                <input type="password" class="form-control" id="val-confirm-password" name="val-confirm-password" placeholder="..and confirm it!">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-suggestions">Suggestions <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col">
+                                                <textarea class="form-control" id="val-suggestions" name="val-suggestions" rows="5" placeholder="What would you like to see?"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-lg-8 ml-auto">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
-
-
-
-                                             <p class="fw-bold">Data Ibu</p>
-
-
-
-                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.</div>
+                                           </div>
                                         </div>
                                     </div>
                                     <div class="card">

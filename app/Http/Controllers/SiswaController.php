@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Siswa;
+use App\Models\Provinsi;
+
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -129,8 +131,10 @@ class SiswaController extends Controller
     public function edit(string $id)
     {
         $siswa = Siswa::find($id);
+        $provinsi = Provinsi::all();
+        // dd($provinsi);
         // dd($siswa);
-        return view('data_siswa/edit_detail_siswa', compact('siswa'));
+        return view('data_siswa/edit_detail_siswa', compact('siswa', 'provinsi' ));
 
         //
     }
