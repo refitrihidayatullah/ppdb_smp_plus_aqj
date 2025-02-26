@@ -332,26 +332,17 @@
                                         <div id="alamat" class="collapse" data-parent="#accordion-one">
                                             <div class="card-body">
 
-                                                <form class="form-valide" action="#" method="post" novalidate="novalidate">
+                                        <form class="form-valide" action="#" method="post" novalidate="novalidate">
                                         <div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="val-skill">Provinsi<span class="text-danger">*</span>
                                             </label>
                                             <div class="col">
                                                 <select class="form-control" id="provinsi_siswa" name="provinsi_siswa">
                                                     <option value="">Please select</option>
-                                                    @foreach ($provinsi as $ps)
-                                                    <option value="{{$ps->id}}">{{$ps->name}}</option>
-                                                    @endforeach
-                                                    <option value="css">CSS</option>
-                                                    <option value="javascript">JavaScript</option>
-                                                    <option value="angular">Angular</option>
-                                                    <option value="angular">React</option>
-                                                    <option value="vuejs">Vue.js</option>
-                                                    <option value="ruby">Ruby</option>
-                                                    <option value="php">PHP</option>
-                                                    <option value="asp">ASP.NET</option>
-                                                    <option value="python">Python</option>
-                                                    <option value="mysql">MySQL</option>
+                                                    {{-- @foreach ($provinsi as $ps)
+                                                    <option value="{{$ps->code}}">{{$ps->name}}</option>
+                                                    @endforeach --}}
+
                                                 </select>
                                             </div>
                                         </div>
@@ -490,7 +481,7 @@
                                                 <input type="text" class="form-control" id="alamat_sekolah_lengkap" name="alamat_sekolah_lengkap" placeholder="Masukkan Alamat Lengkap Sekolah Asal" value="{{$siswa->alamat_sekolah_lengkap}}">
                                             </div>
                                         </div>
-
+                                        <hr>
                                           <div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="val-username">No.Peserta Ujian Jenjang SD/MI
                                             </label>
@@ -527,109 +518,218 @@
                                         <div id="identitas_ortu" class="collapse" data-parent="#accordion-one" style="">
                                             <div class="card-body">
                                             <div class="container">
-                                                <div class="row">
-                                                    <div class="col">
 
-                                                        {{-- FORM DATA AYAH --}}
-                                                   <h4 class="text-center"> Data Ayah </h4>
+                                                {{-- formulir edit ayah  --}}
 
-                                                   <div class="form-validation">
-                                    <form class="form-valide" action="#" method="post" novalidate="novalidate">
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-username">Username <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col">
-                                                <input type="text" class="form-control" id="val-username" name="val-username" placeholder="Enter a username..">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-email">Email <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col">
-                                                <input type="text" class="form-control" id="val-email" name="val-email" placeholder="Your valid email..">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-password">Password <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col">
-                                                <input type="password" class="form-control" id="val-password" name="val-password" placeholder="Choose a safe one..">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-confirm-password">Confirm Password <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col">
-                                                <input type="password" class="form-control" id="val-confirm-password" name="val-confirm-password" placeholder="..and confirm it!">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-suggestions">Suggestions <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col">
-                                                <textarea class="form-control" id="val-suggestions" name="val-suggestions" rows="5" placeholder="What would you like to see?"></textarea>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-lg-8 ml-auto">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                              <p class="font-weight-bold">Data Ayah</p>
+                                                <div class="form-validation">
+                                                <form class="form-valide" action="#" method="post" novalidate="novalidate">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="val-username">Nama Ayah <span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col">
+                                                            <input type="text" class="form-control" id="nama_ayah" name="nama_ayah" placeholder="Masukkan Nama Ayah">
+                                                        </div>
                                                     </div>
-                                                    <div class="col">
-
-                                                        {{-- FORM DATA IBU --}}
-                                                   <h4 class="text-center"> Data Ibu </h4>
-                                                   <div class="form-validation">
-                                    <form class="form-valide" action="#" method="post" novalidate="novalidate">
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-username">Username <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col">
-                                                <input type="text" class="form-control" id="val-username" name="val-username" placeholder="Enter a username..">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-email">Email <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col">
-                                                <input type="text" class="form-control" id="val-email" name="val-email" placeholder="Your valid email..">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-password">Password <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col">
-                                                <input type="password" class="form-control" id="val-password" name="val-password" placeholder="Choose a safe one..">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-confirm-password">Confirm Password <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col">
-                                                <input type="password" class="form-control" id="val-confirm-password" name="val-confirm-password" placeholder="..and confirm it!">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-suggestions">Suggestions <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col">
-                                                <textarea class="form-control" id="val-suggestions" name="val-suggestions" rows="5" placeholder="What would you like to see?"></textarea>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-lg-8 ml-auto">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="val-email">Tempat Lahir Ayah<span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col">
+                                                            <input type="text" class="form-control" id="tempat_lahir_ayah" name="tempat_lahir_ayah" placeholder="Masukkan Tempat Lahir Ayah">
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="val-password">Tanggal Lahir Ayah <span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col">
+                                                            <input type="date" class="form-control" id="tanggal_lahir_ayah" name="tanggal_lahir_ayah" placeholder="Choose a safe one..">
+                                                        </div>
+                                                    </div>
+                                                     <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="val-skill">Hubungan dengan siswa<span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col">
+                                                            <select class="form-control" id="hubungan_dengan_siswa_ayah" name="hubungan_dengan_siswa_ayah">
+                                                                <option value="">Please select</option>
+                                                                <option value="html">HTML</option>
+                                                                <option value="css">CSS</option>
+                                                                <option value="javascript">JavaScript</option>
+                                                                <option value="angular">Angular</option>
+                                                                <option value="angular">React</option>
+                                                                <option value="vuejs">Vue.js</option>
+                                                                <option value="ruby">Ruby</option>
+                                                                <option value="php">PHP</option>
+                                                                <option value="asp">ASP.NET</option>
+                                                                <option value="python">Python</option>
+                                                                <option value="mysql">MySQL</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                      <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="val-skill">Pendidikan<span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col">
+                                                            <select class="form-control" id="pendidikan_ayah" name="pendidikan_ayah">
+                                                                <option value="">Please select</option>
+                                                                <option value="html">HTML</option>
+                                                                <option value="css">CSS</option>
+                                                                <option value="javascript">JavaScript</option>
+                                                                <option value="angular">Angular</option>
+                                                                <option value="angular">React</option>
+                                                                <option value="vuejs">Vue.js</option>
+                                                                <option value="ruby">Ruby</option>
+                                                                <option value="php">PHP</option>
+                                                                <option value="asp">ASP.NET</option>
+                                                                <option value="python">Python</option>
+                                                                <option value="mysql">MySQL</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="val-currency">Pekerjaan Ayah <span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col">
+                                                            <input type="text" class="form-control" id="pekerjaan_ayah" name="pekerjaan_ayah" placeholder="Masukkan Pekerjaan Ayah">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="val-skill">Penghasilan Ayah<span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col">
+                                                            <select class="form-control" id="penghasilan_ayah" name="penghasilan_ayah">
+                                                                <option value="">Please select</option>
+                                                                <option value="html">HTML</option>
+                                                                <option value="css">CSS</option>
+                                                                <option value="javascript">JavaScript</option>
+                                                                <option value="angular">Angular</option>
+                                                                <option value="angular">React</option>
+                                                                <option value="vuejs">Vue.js</option>
+                                                                <option value="ruby">Ruby</option>
+                                                                <option value="php">PHP</option>
+                                                                <option value="asp">ASP.NET</option>
+                                                                <option value="python">Python</option>
+                                                                <option value="mysql">MySQL</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <hr>
+                                                       <p class="font-weight-bold">Data Ibu</p>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="val-username">Nama Ibu <span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col">
+                                                            <input type="text" class="form-control" id="nama_ayah" name="nama_ayah" placeholder="Masukkan Nama Ayah">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="val-email">Tempat Lahir Ayah<span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col">
+                                                            <input type="text" class="form-control" id="tempat_lahir_ayah" name="tempat_lahir_ayah" placeholder="Masukkan Tempat Lahir Ayah">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="val-password">Tanggal Lahir Ayah <span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col">
+                                                            <input type="date" class="form-control" id="tanggal_lahir_ayah" name="tanggal_lahir_ayah" placeholder="Choose a safe one..">
+                                                        </div>
+                                                    </div>
+                                                     <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="val-skill">Hubungan dengan siswa<span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col">
+                                                            <select class="form-control" id="hubungan_dengan_siswa_ayah" name="hubungan_dengan_siswa_ayah">
+                                                                <option value="">Please select</option>
+                                                                <option value="html">HTML</option>
+                                                                <option value="css">CSS</option>
+                                                                <option value="javascript">JavaScript</option>
+                                                                <option value="angular">Angular</option>
+                                                                <option value="angular">React</option>
+                                                                <option value="vuejs">Vue.js</option>
+                                                                <option value="ruby">Ruby</option>
+                                                                <option value="php">PHP</option>
+                                                                <option value="asp">ASP.NET</option>
+                                                                <option value="python">Python</option>
+                                                                <option value="mysql">MySQL</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                      <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="val-skill">Pendidikan<span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col">
+                                                            <select class="form-control" id="pendidikan_ayah" name="pendidikan_ayah">
+                                                                <option value="">Please select</option>
+                                                                <option value="html">HTML</option>
+                                                                <option value="css">CSS</option>
+                                                                <option value="javascript">JavaScript</option>
+                                                                <option value="angular">Angular</option>
+                                                                <option value="angular">React</option>
+                                                                <option value="vuejs">Vue.js</option>
+                                                                <option value="ruby">Ruby</option>
+                                                                <option value="php">PHP</option>
+                                                                <option value="asp">ASP.NET</option>
+                                                                <option value="python">Python</option>
+                                                                <option value="mysql">MySQL</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="val-currency">Pekerjaan Ayah <span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col">
+                                                            <input type="text" class="form-control" id="pekerjaan_ayah" name="pekerjaan_ayah" placeholder="Masukkan Pekerjaan Ayah">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="val-skill">Penghasilan Ayah<span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col">
+                                                            <select class="form-control" id="penghasilan_ayah" name="penghasilan_ayah">
+                                                                <option value="">Please select</option>
+                                                                <option value="html">HTML</option>
+                                                                <option value="css">CSS</option>
+                                                                <option value="javascript">JavaScript</option>
+                                                                <option value="angular">Angular</option>
+                                                                <option value="angular">React</option>
+                                                                <option value="vuejs">Vue.js</option>
+                                                                <option value="ruby">Ruby</option>
+                                                                <option value="php">PHP</option>
+                                                                <option value="asp">ASP.NET</option>
+                                                                <option value="python">Python</option>
+                                                                <option value="mysql">MySQL</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-8 ml-auto">
+                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+
+
+
+
+
+
                                             </div>
 
 
@@ -658,6 +758,189 @@
             </div>
             <!-- #/ container -->
         </div>
+
+{{-- JQUERY UNTUK LARAVOLT  --}}
+{{--
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Fetch provinces
+            $.get('/get-provinces', function(data) {
+                $.each(data, function(key, value) {
+                    $('#provinsi_siswa').append('<option value="' + value.code + '">' + value.name + '</option>');
+                });
+            });
+
+            // Province change event
+            $('#provinsi_siswa').change(function() {
+                var province_id = $(this).val();
+                $('#kabupaten_siswa').empty().append('<option value="">Please select</option>');
+                $('#kecamatan_siswa').empty().append('<option value="">Please select</option>');
+                $('#desa_kelurahan_siswa').empty().append('<option value="">Please select</option>');
+
+
+                if (province_id) {
+                    $.get('/get-cities?province_code=' + province_id, function(data) {
+                        $.each(data, function(key, value) {
+
+                            $('#kabupaten_siswa').append('<option value="' + value.code + '">' + value.name + '</option>');
+                        });
+                    });
+                }
+            });
+
+            // City change event
+            $('#kabupaten_siswa').change(function() {
+                var city_id = $(this).val();
+                $('#kecamatan_siswa').empty().append('<option value="">Please select</option>');
+                $('#desa_kelurahan_siswa').empty().append('<option value="">Please select</option>');
+
+                if (city_id) {
+                    $.get('/get-districts?city_code=' + city_id, function(data) {
+                        $.each(data, function(key, value) {
+                            $('#kecamatan_siswa').append('<option value="' + value.code + '">' + value.name + '</option>');
+                        });
+                    });
+                }
+            });
+
+            // District change event
+            $('#kecamatan_siswa').change(function() {
+                var district_id = $(this).val();
+                $('#desa_kelurahan_siswa').empty().append('<option value="">Please select</option>');
+
+                if (district_id) {
+                    $.get('/get-villages?district_code=' + district_id, function(data) {
+                        $.each(data, function(key, value) {
+                            $('#desa_kelurahan_siswa').append('<option value="' + value.code + '">' + value.name + '</option>');
+                        });
+                    });
+                }
+            });
+        });
+    </script>
+
+JQUERY UNTUK LARAVOLT  --}}
+
+
+{{-- API sekolah indonesia --}}
+
+
+{{-- API sekolah indonesia --}}
+
+
+{{-- JQUERY EDIT DATA ALAMAT --}}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Fetch provinces
+        $.get('/get-provinces', function(data) {
+            $.each(data, function(key, value) {
+                var selected = (value.code == '{{ $siswa->alamat_provinsi }}') ? 'selected' : '';
+                $('#provinsi_siswa').append('<option value="' + value.code + '" ' + selected + '>' + value.name + '</option>');
+            });
+
+            // Trigger change event to load cities if province is already selected
+            if ('{{ $siswa->alamat_provinsi }}') {
+                $('#provinsi_siswa').trigger('change');
+            }
+        });
+
+        // Province change event
+        $('#provinsi_siswa').change(function() {
+            var province_id = $(this).val();
+            $('#kabupaten_siswa').empty().append('<option value="">Please select</option>');
+            $('#kecamatan_siswa').empty().append('<option value="">Please select</option>');
+            $('#desa_kelurahan_siswa').empty().append('<option value="">Please select</option>');
+
+            if (province_id) {
+                $.get('/get-cities?province_code=' + province_id, function(data) {
+                    $.each(data, function(key, value) {
+                        var selected = (value.code == '{{ $siswa->alamat_kabupaten }}') ? 'selected' : '';
+                        $('#kabupaten_siswa').append('<option value="' + value.code + '" ' + selected + '>' + value.name + '</option>');
+                    });
+
+                    // Trigger change event to load districts if city is already selected
+                    if ('{{ $siswa->alamat_kabupaten }}') {
+                        $('#kabupaten_siswa').trigger('change');
+                    }
+                });
+            }
+        });
+
+        // City change event
+        $('#kabupaten_siswa').change(function() {
+            var city_id = $(this).val();
+            $('#kecamatan_siswa').empty().append('<option value="">Please select</option>');
+            $('#desa_kelurahan_siswa').empty().append('<option value="">Please select</option>');
+
+            if (city_id) {
+                $.get('/get-districts?city_code=' + city_id, function(data) {
+                    $.each(data, function(key, value) {
+                        var selected = (value.code == '{{ $siswa->alamat_kecamatan }}') ? 'selected' : '';
+                        $('#kecamatan_siswa').append('<option value="' + value.code + '" ' + selected + '>' + value.name + '</option>');
+                    });
+
+                    // Trigger change event to load villages if district is already selected
+                    if ('{{ $siswa->alamat_kecamatan }}') {
+                        $('#kecamatan_siswa').trigger('change');
+                    }
+                });
+            }
+        });
+
+        // District change event
+        $('#kecamatan_siswa').change(function() {
+            var district_id = $(this).val();
+            $('#desa_kelurahan_siswa').empty().append('<option value="">Please select</option>');
+
+            if (district_id) {
+                $.get('/get-villages?district_code=' + district_id, function(data) {
+                    $.each(data, function(key, value) {
+                        var selected = (value.code == '{{ $siswa->alamat_desa }}') ? 'selected' : '';
+                        $('#desa_kelurahan_siswa').append('<option value="' + value.code + '" ' + selected + '>' + value.name + '</option>');
+                    });
+                });
+            }
+        });
+    });
+</script>
+
+
+
+{{-- JQUERY EDIT DATA ALAMAT --}}
+
+
+{{-- kirim formulir per-module jquery --}}
+
+{{-- kirim identitas siswa --}}
+{{-- kirim identitas siswa --}}
+
+{{-- kirim identitas lengkap siswa --}}
+{{-- kirim identitas lengkap siswa --}}
+
+{{-- kirim riwayat pendidikan --}}
+{{-- kirim riwayat pendidikan --}}
+
+{{-- identitas ayah --}}
+{{-- identitas ayah --}}
+
+
+{{-- identitas ibu --}}
+{{-- identitas ibu --}}
+
+
+{{-- identitas wali --}}
+{{-- identitas wali --}}
+
+
+
+{{-- kirim formulir per-module jquery --}}
+
+
 
 
 

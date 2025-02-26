@@ -2,12 +2,18 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DependentDropdownController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\TestingAjah;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\DependentDropdownController;
+use App\Http\Controllers\WilayahController;
 use Illuminate\Support\Facades\Route;
+
+
+
 
 
 
@@ -98,7 +104,7 @@ Route::middleware(['check.admin'])->group(function () {
 
 
 
-  
+
 
 
     Route::get('/admin/dashboard', function () {
@@ -107,10 +113,20 @@ Route::middleware(['check.admin'])->group(function () {
 });
 
 
-    // ROUTES UNTUK LARAVOLT WILAYAH INDONESIA
-    Route::get('/test-laravolt', [TestingAjah::class,  'index'])->name('test-lara');
-   Route::get('provinces', [DependentDropdownController::class,'provinces'])->name('provinces');
-Route::get('cities', [DependentDropdownController::class,'cities'])->name('cities');
-Route::get('districts', [DependentDropdownController::class,'districts'])->name('districts');
-Route::get('villages', [DependentDropdownController::class,'villages'])->name('villages');
-    // ROUTES UNTUK LARAVOLT WILAYAH INDONESIA
+// ROUTES UNTUK LARAVOLT WILAYAH INDONESIA
+
+Route::get('/get-provinces', [LocationController::class, 'getProvinces']);
+Route::get('/get-cities', [LocationController::class, 'getCities']);
+Route::get('/get-districts', [LocationController::class, 'getDistricts']);
+Route::get('/get-villages', [LocationController::class, 'getVillages']);
+
+// ROUTES UNTUK LARAVOLT WILAYAH INDONESIA
+// ROUTES untuk mencari sekolah by NPSN
+
+// Route untuk menampilkan form pencarian
+Route::get('/cari-sekolah', [SekolahController::class, 'index'])->name('cari.sekolah.form');
+
+// Route untuk menangani form submission
+Route::get('/cari-sekolah/action', [SekolahController::class, 'cariSekolah'])->name('cari.sekolah');
+
+// ROUTES untuk mencari sekolah by NPSN
