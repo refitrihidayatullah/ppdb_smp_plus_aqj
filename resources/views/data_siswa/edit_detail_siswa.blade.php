@@ -36,7 +36,7 @@
                                             </label>
                                             <div class="col">
                                                 <select class="form-control" id="kelas_masuk" name="kelas_masuk">
-                                                    @if ($siswa->kelas_masuk == 'null'|| '')
+                                                    @if ($siswa->kelas_masuk == null|| '')
                                                     <option value="">Pilih Kelas Masuk</option>
                                                     <option value="Siswa Baru Kelas 7">Siswa Baru Kelas 7</option>
                                                     <option value="Siswa Baru Kelas 8">Siswa Baru Kelas 8</option>
@@ -67,12 +67,12 @@
                                                     @if ($siswa->domisili == null || "")
                                                     <option value="">Pilih Domisili</option>
                                                     <option value="Mondok">Mondok</option>
-                                                     <option selected ="Tidak Mondok">Tidak Mondok</option>
+                                                     <option value ="Tidak Mondok">Tidak Mondok</option>
                                                     @elseif($siswa->domisili == 'Tidak Mondok')
                                                      <option selected value="Tidak Mondok">Tidak Mondok</option>
                                                      <option value="Mondok">Mondok</option>
                                                      @else
-                                                     <option selected ="Tidak Mondok">Tidak Mondok</option>
+                                                     <option value ="Tidak Mondok">Tidak Mondok</option>
                                                      <option selected value="Mondok">Mondok</option>
                                                     @endif
 
@@ -135,7 +135,7 @@
                                             </label>
                                             <div class="col">
                                                 <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
-                                                    @if ($siswa->jenis_kelamin == 'null' || "")
+                                                    @if ($siswa->jenis_kelamin == null || "")
                                                     <option selected value="">Pilih Jenis Kelamin</option>
                                                     <option value="Laki-laki">Laki-laki</option>
                                                     <option value="Perempuan">Perempuan</option>
