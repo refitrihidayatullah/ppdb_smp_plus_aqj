@@ -112,13 +112,6 @@ class SiswaController extends Controller
     }
 
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -492,8 +485,35 @@ class SiswaController extends Controller
 
     }
 
+
+    // show pdf
+    public function show_pdf(string $id)
+    {
+        $siswa = Siswa::find($id);
+        dd($siswa);
+        //
+    }
+
+    // show pdf
     // digunakan untuk kirim hasil form json
 
+
+    // upload file
+
+    public function upload_foto(){
+
+    }
+    public function upload_kk(){
+
+    }
+    public function upload_ijazah(){
+
+    }
+
+     public function upload_ktp(){
+
+    }
+    // upload file
     /**
      * Update the specified resource in storage.
      */
@@ -507,6 +527,15 @@ class SiswaController extends Controller
      */
     public function destroy(string $id)
     {
+
+        $user = Siswa::findOrFail($id);
+        if ($user) {
+            $user->delete();
+            return response()->json(['success' => 'Siswa deleted successfully.']);
+        }
+        return redirect()->route('data_siswa');
+        return response()->json(['error' => 'Siswa not found.'], 404);
+
         //
     }
 }

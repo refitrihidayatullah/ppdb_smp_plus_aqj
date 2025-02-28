@@ -16,6 +16,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">Edit/Lihat Detail Siswa</h4>
                                 <hr>
+                                <p> Klik Per-bagian yang ada di bawah </p>
                                    <div id="accordion-one" class="accordion">
                                     <div class="card">
                                         <div class="card-header">
@@ -1141,42 +1142,63 @@
                                 <h4> Berkas Pendaftaran </h4>
                                 <hr>
                                 <small>Foto Siswa </small>
-                                <img src="https://ppdb.smkalqodirijember.sch.id//uploads/foto_siswa/Foto_DwiSilfiaAnggraini_221120241.png" alt="Nawang Kirana Aurora " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
-                                <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                                <img src="https://ppdb.smkalqodirijember.sch.id//uploads/foto_siswa/Foto_DwiSilfiaAnggraini_221120241.png" alt="{{ $siswa->nama_siswa }} " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
+                                    <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                                     <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
                                     <input type="file" name="upload_foto" id="upload_foto" accept=".jpg,.jpeg,.png">
                                     <button type="submit" class="btn mt-2 btn-primary btn-block">Upload</button>
                                     </form>
 
                                     <small> Kartu Keluarga </small>
-                                    <img src="https://ppdb.smkalqodirijember.sch.id//uploads/scan_kk/25.jpg" alt="Nawang Kirana Aurora " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
+                                    <img src="https://ppdb.smkalqodirijember.sch.id//uploads/scan_kk/25.jpg" alt="{{ $siswa->nama_siswa }} " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
                                     <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                                     <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
-                                    <input type="file" name="upload_foto" id="upload_foto" accept=".jpg,.jpeg,.png">
+                                    <input type="file" name="upload_kk" id="upload_kk" accept=".jpg,.jpeg,.png">
                                     <button type="submit" class="btn mt-2 btn-primary btn-block">Upload</button>
                                     </form>
 
 
                                     <small> Ijazah SD/MI Sederajat</small>
-                                    <img src="https://ppdb.smkalqodirijember.sch.id//uploads/scan_kk/25.jpg" alt="Nawang Kirana Aurora " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
+                                    <img src="https://ppdb.smkalqodirijember.sch.id//uploads/scan_kk/25.jpg" alt="{{ $siswa->nama_siswa }} " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
                                     <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                                     <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
-                                    <input type="file" name="upload_foto" id="upload_foto" accept=".jpg,.jpeg,.png">
+                                    <input type="file" name="upload_ijazah" id="upload_ijazah" accept=".jpg,.jpeg,.png">
                                     <button type="submit" class="btn mt-2 btn-primary btn-block">Upload</button>
                                     </form>
 
                                     <small> KTP Orangtua (salah satu)</small>
-                                    <img src="https://ppdb.smkalqodirijember.sch.id//uploads/scan_kk/25.jpg" alt="Nawang Kirana Aurora " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
+                                    <img src="https://ppdb.smkalqodirijember.sch.id//uploads/scan_kk/25.jpg" alt="{{ $siswa->nama_siswa }} " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
                                     <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                                     <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
-                                    <input type="file" name="upload_foto" id="upload_foto" accept=".jpg,.jpeg,.png">
+                                    <input type="file" name="upload_ktp" id="upload_ktp" accept=".jpg,.jpeg,.png">
                                     <button type="submit" class="btn mt-2 btn-primary btn-block">Upload</button>
                                     </form>
                                     <hr>
                                 <h4> Status Pendaftaran & Validasi </h4>
+                                <form action="#" method="post">
+                                <input type="hidden" name="id_siswa" value="19">
+                                <select class="form-control" id="status_verifikasi" name="status_verifikasi">
+                                    <option selected="" value="BELUM VERIFIKASI">BELUM VERIFIKASI</option>
+                                        <option value="SUDAH VERIFIKASI">SUDAH VERIFIKASI</option>
+
+
+                                </select>
+
+
+
+                                <select class="form-control mt-2" id="status_verifikasi" name="status_verifikasi">
+                                        <option selected="" value="BELUM VERIFIKASI">BELUM VERIFIKASI</option>
+                                        <option value="SUDAH VERIFIKASI">SUDAH VERIFIKASI</option>
+
+                                </select>
+                                <button type="submit" class="btn btn-primary mt-3 mb-3 btn-block">Ubah Status Verifikasi</button>
+                            </form>
                                 <hr>
-                                <hr>
+
                                 <h4> Download Surat</h4>
+                                <a href="#">
+                            <button type="button" class="btn mt-2 mb-2 btn-primary btn-block">Formulir Pendaftaran</button>
+                                </a>
                                 <hr>
                                 {{-- <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores repellendus molestiae exercitationem voluptatem tempora quo dolore nostrum dolor consequuntur itaque, alias fugit. Architecto rerum animi velit, beatae corrupti quos nam saepe asperiores aliquid quae culpa ea reiciendis ipsam numquam laborum aperiam. Id tempore consequuntur velit vitae corporis, aspernatur praesentium ratione!</p> --}}
                             </div>
@@ -1558,8 +1580,23 @@ $(document).ready(function() {
 {{-- identitas wali --}}
 
 
+{{-- upload file jquery --}}
+
+{{-- foto--}}
+
+{{-- foto--}}
+{{-- KK --}}
+{{-- KK --}}
+{{-- Ijazah --}}
+
+{{-- Ijazah --}}
+{{-- KTP --}}
+{{-- KTP --}}
+
+{{-- upload file jquery --}}
 
 {{-- kirim formulir per-module jquery --}}
+
 
 
 
