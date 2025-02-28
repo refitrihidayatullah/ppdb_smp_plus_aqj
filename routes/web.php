@@ -87,14 +87,20 @@ Route::middleware(['check.admin'])->group(function () {
     Route::get('/data_siswa/{id}/edit', [SiswaController::class, 'edit'])->name('siswa.edit');
     Route::put('/data_siswa/{id}', [SiswaController::class, 'update'])->name('siswa.update');
     Route::delete('/data_siswa/delete/{id}', [SiswaController::class, 'destroy'])->name('siswa.destroy');
-    // Get Json Data Siswa
+    // Get Json list Data Siswa
     Route::get('/get_siswa', [SiswaController::class, 'get_siswa'])->name('get_siswa');
 
 
     Route::get('/test_edit_siswa', [SiswaController::class, 'test_edit'])->name('test_edit_siswa');
 
-
-
+    // query form identitas siswa
+    Route::post('/update-form', [SiswaController::class, 'send_kelas_dom'])->name('form_update_identitas');
+    Route::post('/update_id_siswa', [SiswaController::class, 'send_identitas_siswa'])->name('form_update_identitas_siswa');
+    Route::post('/update_alamat_siswa', [SiswaController::class, 'send_alamat_siswa'])->name('form_update_alamat_siswa');
+     Route::post('/update_pendidikan_siswa', [SiswaController::class, 'send_riwayat_pendidikan_siswa'])->name('form_update_pendidikan_siswa');
+    Route::post('/update_ortu_siswa', [SiswaController::class, 'send_ortu_siswa'])->name('form_update_ortu_siswa');
+      Route::post('/update_wali_siswa', [SiswaController::class, 'send_wali_siswa'])->name('form_update_wali_siswa');
+    // query form identitas siswa
 
     // Route::get('/user', [DashboardController::class,  'index'])->name('dashboard');
 
