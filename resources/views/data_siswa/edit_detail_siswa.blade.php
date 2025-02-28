@@ -1183,11 +1183,11 @@
                         $('#alamat_sekolah_kecamatan').val(sekolah.kecamatan);
                         $('#alamat_sekolah_lengkap').val(sekolah.alamat_jalan);
                     } else {
-                        alert('Sekolah dengan NPSN tersebut tidak ditemukan.');
+                        // alert('Sekolah dengan NPSN tersebut tidak ditemukan.');
                     }
                 },
                 error: function() {
-                    alert('Terjadi kesalahan saat mengambil data dari API.');
+                    // alert('Terjadi kesalahan saat mengambil data dari API.');
                 }
             });
         }
