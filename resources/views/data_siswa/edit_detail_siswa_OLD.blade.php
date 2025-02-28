@@ -3,20 +3,23 @@
 @section('title', 'Edit/Lihat Detail Siswa - SPMB SMPP Al-Qodiri Jember')
 
 @section('content')
+<div class="content-body" style="min-height: 798px;">
 
-<div class="content-body" style="min-height: 1110px;">
 
-
-            <!-- row -->
 
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12 col-md-8">
+                    <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Edit/Lihat Detail Siswa</h4>
+                                <h4>
+                                    Edit Data Siswa - {{ $siswa->nama_siswa }} - {{ $siswa->tahun_daftar }}
+                                </h4>
                                 <hr>
-                                   <div id="accordion-one" class="accordion">
+
+                           <div class="row">
+                                <div class="col-12 col-md-8">
+                                        <div id="accordion-one" class="accordion">
                                     <div class="card">
                                         <div class="card-header">
                                             <h5 class="mb-0 collapsed" data-toggle="collapse" data-target="#kelasmasukdomisili" aria-expanded="false" aria-controls="kelasmasukdomisili"><i class="fa" aria-hidden="true"></i>Kelas Masuk dan Domisili</h5>
@@ -1132,53 +1135,20 @@
                                         </div>
                                     </div>
                                 </div>
+    </div>
+    <div class="col">
+    <div class="card" style="width: 18rem;">
+                                    <img class="img-fluid"  src="https://natusi.co.id/assets/img/teams/Foto_Dwi%20Silfia%20Anggraini_22112024.png" alt="">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $siswa->nama_siswa }}</h5>
+                                        <p class="card-text">This is a wider card with supporting text and below as a natural lead-in to the additional content. This content is a little bit longer.</p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+                                        </p>
+                                    </div>
+                                </div>
+                                    </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4> Berkas Pendaftaran </h4>
-                                <hr>
-                                <small>Foto Siswa </small>
-                                <img src="https://ppdb.smkalqodirijember.sch.id//uploads/foto_siswa/Foto_DwiSilfiaAnggraini_221120241.png" alt="Nawang Kirana Aurora " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
-                                <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
-                                    <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
-                                    <input type="file" name="upload_foto" id="upload_foto" accept=".jpg,.jpeg,.png">
-                                    <button type="submit" class="btn mt-2 btn-primary btn-block">Upload</button>
-                                    </form>
 
-                                    <small> Kartu Keluarga </small>
-                                    <img src="https://ppdb.smkalqodirijember.sch.id//uploads/scan_kk/25.jpg" alt="Nawang Kirana Aurora " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
-                                    <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
-                                    <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
-                                    <input type="file" name="upload_foto" id="upload_foto" accept=".jpg,.jpeg,.png">
-                                    <button type="submit" class="btn mt-2 btn-primary btn-block">Upload</button>
-                                    </form>
-
-
-                                    <small> Ijazah SD/MI Sederajat</small>
-                                    <img src="https://ppdb.smkalqodirijember.sch.id//uploads/scan_kk/25.jpg" alt="Nawang Kirana Aurora " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
-                                    <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
-                                    <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
-                                    <input type="file" name="upload_foto" id="upload_foto" accept=".jpg,.jpeg,.png">
-                                    <button type="submit" class="btn mt-2 btn-primary btn-block">Upload</button>
-                                    </form>
-
-                                    <small> KTP Orangtua (salah satu)</small>
-                                    <img src="https://ppdb.smkalqodirijember.sch.id//uploads/scan_kk/25.jpg" alt="Nawang Kirana Aurora " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
-                                    <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
-                                    <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
-                                    <input type="file" name="upload_foto" id="upload_foto" accept=".jpg,.jpeg,.png">
-                                    <button type="submit" class="btn mt-2 btn-primary btn-block">Upload</button>
-                                    </form>
-                                    <hr>
-                                <h4> Status Pendaftaran & Validasi </h4>
-                                <hr>
-                                <hr>
-                                <h4> Download Surat</h4>
-                                <hr>
-                                {{-- <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores repellendus molestiae exercitationem voluptatem tempora quo dolore nostrum dolor consequuntur itaque, alias fugit. Architecto rerum animi velit, beatae corrupti quos nam saepe asperiores aliquid quae culpa ea reiciendis ipsam numquam laborum aperiam. Id tempore consequuntur velit vitae corporis, aspernatur praesentium ratione!</p> --}}
                             </div>
                         </div>
                     </div>
@@ -1186,10 +1156,6 @@
             </div>
             <!-- #/ container -->
         </div>
-
-
-
-
 
 
         {{-- load JQUERY --}}
