@@ -36,7 +36,8 @@ return new class extends Migration
             $table->string('no_peserta_ujian')->nullable();;
             $table->string('npsn_sekolah_asal')->nullable();;
             $table->string('nama_sekolah_asal')->nullable();;
-            $table->enum('jenis_sekolah_asal', ['SD', 'MI', 'Paket A', 'SLB'])->nullable();;
+            $table->string('jenis_sekolah_asal')->nullable();;
+            // $table->enum('jenis_sekolah_asal', ['SD', 'MI', 'Paket A', 'SLB'])->nullable();;
             $table->string('alamat_sekolah_provinsi')->nullable();;
             $table->string('alamat_sekolah_kabupaten')->nullable();;
             $table->string('alamat_sekolah_kecamatan')->nullable();;
