@@ -1142,16 +1142,16 @@
                                 <h4> Berkas Pendaftaran </h4>
                                 <hr>
                                 <small>Foto Siswa </small>
-                                <img src="https://ppdb.smkalqodirijember.sch.id//uploads/foto_siswa/Foto_DwiSilfiaAnggraini_221120241.png" alt="{{ $siswa->nama_siswa }} " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
-                                    <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                                <img id="preview_image" src="{{asset('uploads/foto_siswa/' . $siswa->foto_siswa)}}" alt="{{ $siswa->nama_siswa }} " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
+                                    <form class="form_upload_foto" action="{{ route('upload_foto_siswa') }}" enctype="multipart/form-data" method="post" accept-charset="utf-8"> @csrf
                                     <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
                                     <input type="file" name="upload_foto" id="upload_foto" accept=".jpg,.jpeg,.png">
                                     <button type="submit" class="btn mt-2 btn-primary btn-block">Upload</button>
                                     </form>
 
                                     <small> Kartu Keluarga </small>
-                                    <img src="https://ppdb.smkalqodirijember.sch.id//uploads/scan_kk/25.jpg" alt="{{ $siswa->nama_siswa }} " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
-                                    <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                                    <img id="preview_kk" src="{{ asset('uploads/kartu_keluarga/' . $siswa->kartu_keluarga) }}" alt="{{ $siswa->kartu_keluarga }} " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
+                                    <form class="form_upload_kk" action="{{ route('upload_kk') }}" enctype="multipart/form-data" method="post" accept-charset="utf-8">  @csrf
                                     <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
                                     <input type="file" name="upload_kk" id="upload_kk" accept=".jpg,.jpeg,.png">
                                     <button type="submit" class="btn mt-2 btn-primary btn-block">Upload</button>
@@ -1159,8 +1159,8 @@
 
 
                                     <small> Ijazah SD/MI Sederajat</small>
-                                    <img src="https://ppdb.smkalqodirijember.sch.id//uploads/scan_kk/25.jpg" alt="{{ $siswa->nama_siswa }} " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
-                                    <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                                    <img id="preview_ijazah" src="{{ asset('uploads/ijazah' . $siswa->ijazah_sd_mi) }}" alt="{{ $siswa->nama_siswa }} " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
+                                    {{-- <form class="form_upload_ijazah" action="{{  }}" enctype="multipart/form-data" method="post" accept-charset="utf-8"> --}}
                                     <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
                                     <input type="file" name="upload_ijazah" id="upload_ijazah" accept=".jpg,.jpeg,.png">
                                     <button type="submit" class="btn mt-2 btn-primary btn-block">Upload</button>
@@ -1584,8 +1584,144 @@ $(document).ready(function() {
 
 {{-- foto--}}
 
+{{-- preview image langsung ketika  sudah upload  --}}
+
+
+<script>
+$(document).ready(function() {
+    $('#upload_foto').on('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                $('#preview_image').attr('src', e.target.result); // Set the src of the img tag to the uploaded image
+            }
+            reader.readAsDataURL(file); // Convert the file to a data URL
+        }
+    });
+});
+</script>
+{{-- preview image langsung ketika  sudah upload  --}}
+
+
+<script>
+$(document).ready(function() {
+    $('form.form_upload_foto').on('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        var formData = new FormData(this); // Create FormData object
+
+        $.ajax({
+            url: $(this).attr('action'), // Use the form action URL
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                toastr.success('File uploaded successfully!');
+                // Optionally, update the image source to show the new image
+                $('img').attr('src', response.imageUrl);
+            },
+            error: function(xhr, status, error) {
+                toastr.error('An error occurred while uploading the file.');
+                console.error(error);
+            }
+        });
+    });
+});
+</script>
+
+
+
+{{-- --------------------------}}
+{{-- <script>
+$(document).ready(function() {
+    $('form.form-upload_foto').on('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        var formData = new FormData(this); // Create a FormData object
+
+        $.ajax({
+            url: $(this).attr('action'), // Use the form's action attribute
+        //    url: '/update-siswa', // URL to send the form data
+            type: 'POST',
+            data: formData,
+            contentType: false, // Prevent jQuery from overriding content type
+            processData: false, // Prevent jQuery from processing the data
+            success: function(response) {
+                // Handle success response
+                toastr.success('Photo uploaded successfully!');
+                // Optionally, update the image source to show the new photo
+                $('img[alt="{{ $siswa->nama_siswa }}"]').attr('src', response.new_image_url);
+            },
+            error: function(xhr, status, error) {
+                // Handle error response
+                toastr.error('An error occurred while uploading the photo.');
+                console.error(error);
+            }
+        });
+    });
+});
+</script> --}}
 {{-- foto--}}
 {{-- KK --}}
+
+{{-- preview kk --}}
+
+<script>
+$(document).ready(function() {
+    $('#upload_kk').on('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                $('#preview_kk').attr('src', e.target.result); // Set the src of the img tag to the uploaded image
+            }
+            reader.readAsDataURL(file); // Convert the file to a data URL
+        }
+    });
+});
+</script>
+{{-- preview kk --}}
+
+
+<script>
+$(document).ready(function() {
+    $('form.form_upload_kk').on('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        var formData = new FormData(this); // Create FormData object
+
+        $.ajax({
+            url: $(this).attr('action'), // Use the form action URL
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                toastr.success('File uploaded successfully!');
+                // Optionally, update the image source to show the new image
+                $('img').attr('src', response.imageUrl);
+            },
+            error: function(xhr, status, error) {
+                toastr.error('An error occurred while uploading the file.');
+                console.error(error);
+            }
+        });
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
 {{-- KK --}}
 {{-- Ijazah --}}
 

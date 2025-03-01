@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\Siswa;
 use App\Models\Provinsi;
+use App\Models\Siswa;
 use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
 class SiswaController extends Controller
@@ -500,11 +501,103 @@ class SiswaController extends Controller
 
     // upload file
 
-    public function upload_foto(){
+    public function upload_foto(Request $request){
+         // Validate the incoming request data
+        $validatedData = $request->validate([
+             'upload_foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // Max size 2MB
+        ]);
+
+    $siswa = Siswa::find($request->input('id_siswa'));
+          // Check if the Siswa record exists
+    if (!$siswa) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Siswa not found.',
+        ], 404);
+    }
+
+    // Handle file upload
+    if ($request->hasFile('upload_foto')) {
+         $file = $request->file('upload_foto');
+
+            if ($siswa->foto_siswa) {
+            $oldPhotoPath = public_path('uploads/foto_siswa/' . $siswa->foto_siswa);
+            if (file_exists($oldPhotoPath)) {
+                unlink($oldPhotoPath);
+            }
+        }
+        // Generate a unique filename
+        $filename = time() . '_' . $file->getClientOriginalName();
+
+        // Define the path to save the file
+        $path = public_path('uploads/foto_siswa');
+
+        // Move the uploaded file to the specified path
+        $file->move($path, $filename);
+
+        // Update the Siswa record with the filename
+        $siswa->foto_siswa = $filename; // Assuming 'foto_siswa' is the column name in your database
+        $siswa->save(); // Save the changes to the database
+    }
+
+ 
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Siswa data updated successfully',
+        'data' => $siswa,
+    ]);
+
+    
+
 
     }
-    public function upload_kk(){
+    public function upload_kk(Request $request){
+   // Validate the incoming request data
+        $validatedData = $request->validate([
+             'upload_kk' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // Max size 2MB
+        ]);
 
+    $siswa = Siswa::find($request->input('id_siswa'));
+          // Check if the Siswa record exists
+    if (!$siswa) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Siswa not found.',
+        ], 404);
+    }
+
+    // Handle file upload
+    if ($request->hasFile('upload_kk')) {
+         $file = $request->file('upload_kk');
+
+            if ($siswa->kartu_keluarga) {
+            $oldPhotoPath = public_path('uploads/kartu_keluarga/' . $siswa->kartu_keluarga);
+             if (file_exists($oldPhotoPath)) {
+                unlink($oldPhotoPath);
+            }
+        }
+        // Generate a unique filename
+        $filename = time() . '_' . $file->getClientOriginalName();
+
+        // Define the path to save the file
+        $path = public_path('uploads/kartu_keluarga');
+
+        // Move the uploaded file to the specified path
+        $file->move($path, $filename);
+
+        // Update the Siswa record with the filename
+        $siswa->kartu_keluarga = $filename; // Assuming 'foto_siswa' is the column name in your database
+        $siswa->save(); // Save the changes to the database
+    }
+
+ 
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Siswa data updated successfully',
+        'data' => $siswa,
+    ]);
+
+    
     }
     public function upload_ijazah(){
 
@@ -534,7 +627,7 @@ class SiswaController extends Controller
             return response()->json(['success' => 'Siswa deleted successfully.']);
         }
         return redirect()->route('data_siswa');
-        return response()->json(['error' => 'Siswa not found.'], 404);
+        // return response()->json(['error' => 'Siswa not found.'], 404);
 
         //
     }

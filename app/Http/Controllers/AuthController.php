@@ -54,7 +54,8 @@ class AuthController extends Controller
         } elseif (Auth::guard('admin')->attempt($credentials)) {
             return response()->json([
                 'success' => true,
-                'redirect_url' => '/dashboard'
+                'redirect_url' =>  route('dashboard')
+                // 'redirect_url' => '/dashboard'
             ]);
         }
 

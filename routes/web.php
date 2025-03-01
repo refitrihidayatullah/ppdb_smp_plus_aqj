@@ -100,8 +100,10 @@ Route::middleware(['check.admin'])->group(function () {
      Route::post('/update_pendidikan_siswa', [SiswaController::class, 'send_riwayat_pendidikan_siswa'])->name('form_update_pendidikan_siswa');
     Route::post('/update_ortu_siswa', [SiswaController::class, 'send_ortu_siswa'])->name('form_update_ortu_siswa');
       Route::post('/update_wali_siswa', [SiswaController::class, 'send_wali_siswa'])->name('form_update_wali_siswa');
-    // query form identitas siswa
-
+      // query form identitas siswa
+      // upload foto
+      Route::post('/update_foto_siswa', [SiswaController::class, 'upload_foto'])->name('upload_foto_siswa');
+      Route::post('/update_kk_siswa', [SiswaController::class, 'upload_kk'])->name('upload_kk');
     // Route::get('/user', [DashboardController::class,  'index'])->name('dashboard');
 
     // CRUD data akun siswa
