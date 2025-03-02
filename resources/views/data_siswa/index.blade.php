@@ -71,7 +71,7 @@
                         { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                         { data: 'foto', name: 'foto', orderable: false, searchable: false }, // Kolom foto
                         { data: 'nama_siswa', name: 'nama_siswa' }, // Kolom nama
-                        { data: 'tempat_lahir', name: 'tempat_lahir' }, // Kolom tempat lahir
+                        { data: 'tempat_lahir' , name: 'tempat_lahir' }, // Kolom tempat lahir
                         { data: 'nama_sekolah_asal', name: 'nama_sekolah_asal' }, // Kolom sekolah asal
                         { data: 'status_selesai', name: 'status_selesai' }, // Kolom status selesai
                         { data: 'action', name: 'action', orderable: false, searchable: false } // Kolom aksi

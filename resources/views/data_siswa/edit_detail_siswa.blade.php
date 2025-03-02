@@ -34,24 +34,33 @@
                                             </label>
                                             <div class="col">
                                                 <select class="form-control" id="kelas_masuk" name="kelas_masuk">
-                                                    @if ($siswa->kelas_masuk == null|| '')
+
+
+                                                    <option value="">Pilih Kelas Masuk</option>
+                                                    @foreach (['Siswa Baru Kelas 7', 'Siswa Baru Kelas 8', 'Siswa Baru Kelas 9'] as $kelas)
+                                                        <option value="{{ $kelas }}" {{ $siswa->kelas === $kelas ? 'selected' : '' }}>
+                                                            {{ $kelas }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                    {{-- @if ($siswa->kelas_masuk === null|| '')
                                                     <option value="">Pilih Kelas Masuk</option>
                                                     <option value="Siswa Baru Kelas 7">Siswa Baru Kelas 7</option>
                                                     <option value="Siswa Baru Kelas 8">Siswa Baru Kelas 8</option>
                                                     <option value="Siswa Baru Kelas 9">Siswa Baru Kelas 9</option>
-                                                    @elseif ($siswa->kelas_masuk== 'Siswa Baru Kelas 7')
-                                                    <option value="Siswa Baru Kelas 7" selected>Siswa Baru Kelas 7</option>
-                                                     <option value="Siswa Baru Kelas 8">Siswa Baru Kelas 8</option>
+                                                    @elseif ($siswa->kelas_masuk==='Siswa Baru Kelas 7')
+                                                    <option value="Siswa Baru Kelas 7" >Siswa Baru Kelas 7</option>
+                                                    <option selected value="Siswa Baru Kelas 8">Siswa Baru Kelas 8</option>
                                                     <option value="Siswa Baru Kelas 9">Siswa Baru Kelas 9</option>
-                                                    @elseif ($siswa->kelas_masuk == 'Siswa Baru Kelas 8')
+                                                    @elseif ($siswa->kelas_masuk==='Siswa Baru Kelas 8')
                                                      <option value="Siswa Baru Kelas 7">Siswa Baru Kelas 7</option>
-                                                    <option value="Siswa Baru Kelas 8" selected>Siswa Baru Kelas 8</option>
+                                                    <option selected value="Siswa Baru Kelas 8" >Siswa Baru Kelas 8</option>
                                                     <option value="Siswa Baru Kelas 9">Siswa Baru Kelas 9</option>
-                                                    @else
+                                                    @elseif ($siswa->kelas_masuk==='Siswa Baru Kelas 9')
                                                     <option value="Siswa Baru Kelas 7">Siswa Baru Kelas 7</option>
                                                     <option value="Siswa Baru Kelas 8">Siswa Baru Kelas 8</option>
-                                                    <option value="Siswa Baru Kelas 9" selected>Siswa Baru Kelas 9</option>
-                                                    @endif
+                                                    <option selected value="Siswa Baru Kelas 9" >Siswa Baru Kelas 9</option>
+                                                    @endif --}}
                                                     {{-- <option value="html">HTML</option>
                                                     <option value="css">CSS</option> --}}
                                                 </select>
@@ -661,7 +670,7 @@
 
                                                             <select class="form-control" id="penghasilan_ayah" name="penghasilan_ayah">
 
-                                                                @if($siswa->penghasilan_ayah == null ||'')
+                                                             @if($siswa->penghasilan_ayah == null ||'')
                                                                     <option value="">Please select</option>
                                                                 <option value="Kurang dari Rp. 500.000">Kurang dari Rp. 500.000</option>
                                                                 <option value="Rp. 500.000 - Rp. 1.000.000">Rp. 500.000 - Rp. 1.000.000</option>
@@ -678,7 +687,7 @@
                                                                 @elseif($siswa->penghasilan_ayah == 'Rp. 500.000 - Rp. 1.000.000')
                                                                     <option value="">Please select</option>
                                                                 <option value="Kurang dari Rp. 500.000">Kurang dari Rp. 500.000</option>
-                                                                <option value="Rp. 500.000 - Rp. 1.000.000">Rp. 500.000 - Rp. 1.000.000</option>
+                                                                <option selected value="Rp. 500.000 - Rp. 1.000.000">Rp. 500.000 - Rp. 1.000.000</option>
                                                                 <option value="Rp. 1.000.000 - Rp. 2.000.000">Rp. 1.000.000 - Rp. 2.000.000</option>
                                                                 <option value="Rp. 2.000.000 - Rp. 3.000.000">Rp. 2.000.000 - Rp. 3.000.000</option>
                                                                 <option value="Lebih Dari Rp. 3.000.000">Lebih Dari Rp. 3.000.000</option>
@@ -686,7 +695,7 @@
                                                                     <option value="">Please select</option>
                                                                 <option value="Kurang dari Rp. 500.000">Kurang dari Rp. 500.000</option>
                                                                 <option value="Rp. 500.000 - Rp. 1.000.000">Rp. 500.000 - Rp. 1.000.000</option>
-                                                                <option value="Rp. 1.000.000 - Rp. 2.000.000">Rp. 1.000.000 - Rp. 2.000.000</option>
+                                                                <option selected value="Rp. 1.000.000 - Rp. 2.000.000">Rp. 1.000.000 - Rp. 2.000.000</option>
                                                                 <option value="Rp. 2.000.000 - Rp. 3.000.000">Rp. 2.000.000 - Rp. 3.000.000</option>
                                                                 <option value="Lebih Dari Rp. 3.000.000">Lebih Dari Rp. 3.000.000</option>
                                                                 @elseif($siswa->penghasilan_ayah == 'Rp. 2.000.000 - Rp. 3.000.000')
@@ -694,7 +703,7 @@
                                                                 <option value="Kurang dari Rp. 500.000">Kurang dari Rp. 500.000</option>
                                                                 <option value="Rp. 500.000 - Rp. 1.000.000">Rp. 500.000 - Rp. 1.000.000</option>
                                                                 <option value="Rp. 1.000.000 - Rp. 2.000.000">Rp. 1.000.000 - Rp. 2.000.000</option>
-                                                                <option value="Rp. 2.000.000 - Rp. 3.000.000">Rp. 2.000.000 - Rp. 3.000.000</option>
+                                                                <option selected value="Rp. 2.000.000 - Rp. 3.000.000">Rp. 2.000.000 - Rp. 3.000.000</option>
                                                                 <option value="Lebih Dari Rp. 3.000.000">Lebih Dari Rp. 3.000.000</option>
                                                                 @elseif($siswa->penghasilan_ayah == 'Lebih Dari Rp. 3.000.000' )
                                                                     <option value="">Please select</option>
@@ -702,7 +711,7 @@
                                                                 <option value="Rp. 500.000 - Rp. 1.000.000">Rp. 500.000 - Rp. 1.000.000</option>
                                                                 <option value="Rp. 1.000.000 - Rp. 2.000.000">Rp. 1.000.000 - Rp. 2.000.000</option>
                                                                 <option value="Rp. 2.000.000 - Rp. 3.000.000">Rp. 2.000.000 - Rp. 3.000.000</option>
-                                                                <option value="Lebih Dari Rp. 3.000.000">Lebih Dari Rp. 3.000.000</option>
+                                                                <option selected value="Lebih Dari Rp. 3.000.000">Lebih Dari Rp. 3.000.000</option>
                                                                 @endif
 
                                                             </select>
@@ -1067,7 +1076,7 @@
 
                                                             <select class="form-control" id="penghasilan_wali" name="penghasilan_wali">
 
-                                                                @if($siswa->penghasilan_wali == null ||'')
+                                                                  @if($siswa->penghasilan_wali == null ||'')
                                                                     <option value="">Please select</option>
                                                                 <option value="Kurang dari Rp. 500.000">Kurang dari Rp. 500.000</option>
                                                                 <option value="Rp. 500.000 - Rp. 1.000.000">Rp. 500.000 - Rp. 1.000.000</option>
@@ -1084,7 +1093,7 @@
                                                                 @elseif($siswa->penghasilan_wali == 'Rp. 500.000 - Rp. 1.000.000')
                                                                     <option value="">Please select</option>
                                                                 <option value="Kurang dari Rp. 500.000">Kurang dari Rp. 500.000</option>
-                                                                <option value="Rp. 500.000 - Rp. 1.000.000">Rp. 500.000 - Rp. 1.000.000</option>
+                                                                <option selected value="Rp. 500.000 - Rp. 1.000.000">Rp. 500.000 - Rp. 1.000.000</option>
                                                                 <option value="Rp. 1.000.000 - Rp. 2.000.000">Rp. 1.000.000 - Rp. 2.000.000</option>
                                                                 <option value="Rp. 2.000.000 - Rp. 3.000.000">Rp. 2.000.000 - Rp. 3.000.000</option>
                                                                 <option value="Lebih Dari Rp. 3.000.000">Lebih Dari Rp. 3.000.000</option>
@@ -1092,7 +1101,7 @@
                                                                     <option value="">Please select</option>
                                                                 <option value="Kurang dari Rp. 500.000">Kurang dari Rp. 500.000</option>
                                                                 <option value="Rp. 500.000 - Rp. 1.000.000">Rp. 500.000 - Rp. 1.000.000</option>
-                                                                <option value="Rp. 1.000.000 - Rp. 2.000.000">Rp. 1.000.000 - Rp. 2.000.000</option>
+                                                                <option selected value="Rp. 1.000.000 - Rp. 2.000.000">Rp. 1.000.000 - Rp. 2.000.000</option>
                                                                 <option value="Rp. 2.000.000 - Rp. 3.000.000">Rp. 2.000.000 - Rp. 3.000.000</option>
                                                                 <option value="Lebih Dari Rp. 3.000.000">Lebih Dari Rp. 3.000.000</option>
                                                                 @elseif($siswa->penghasilan_wali == 'Rp. 2.000.000 - Rp. 3.000.000')
@@ -1100,7 +1109,7 @@
                                                                 <option value="Kurang dari Rp. 500.000">Kurang dari Rp. 500.000</option>
                                                                 <option value="Rp. 500.000 - Rp. 1.000.000">Rp. 500.000 - Rp. 1.000.000</option>
                                                                 <option value="Rp. 1.000.000 - Rp. 2.000.000">Rp. 1.000.000 - Rp. 2.000.000</option>
-                                                                <option value="Rp. 2.000.000 - Rp. 3.000.000">Rp. 2.000.000 - Rp. 3.000.000</option>
+                                                                <option selected value="Rp. 2.000.000 - Rp. 3.000.000">Rp. 2.000.000 - Rp. 3.000.000</option>
                                                                 <option value="Lebih Dari Rp. 3.000.000">Lebih Dari Rp. 3.000.000</option>
                                                                 @elseif($siswa->penghasilan_wali == 'Lebih Dari Rp. 3.000.000' )
                                                                     <option value="">Please select</option>
@@ -1108,7 +1117,7 @@
                                                                 <option value="Rp. 500.000 - Rp. 1.000.000">Rp. 500.000 - Rp. 1.000.000</option>
                                                                 <option value="Rp. 1.000.000 - Rp. 2.000.000">Rp. 1.000.000 - Rp. 2.000.000</option>
                                                                 <option value="Rp. 2.000.000 - Rp. 3.000.000">Rp. 2.000.000 - Rp. 3.000.000</option>
-                                                                <option value="Lebih Dari Rp. 3.000.000">Lebih Dari Rp. 3.000.000</option>
+                                                                <option selected value="Lebih Dari Rp. 3.000.000">Lebih Dari Rp. 3.000.000</option>
                                                                 @endif
 
                                                             </select>
@@ -1159,24 +1168,27 @@
 
 
                                     <small> Ijazah SD/MI Sederajat</small>
-                                    <img id="preview_ijazah" src="{{ asset('uploads/ijazah' . $siswa->ijazah_sd_mi) }}" alt="{{ $siswa->nama_siswa }} " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
-                                    {{-- <form class="form_upload_ijazah" action="{{  }}" enctype="multipart/form-data" method="post" accept-charset="utf-8"> --}}
+                                    <img id="preview_ijazah" src="{{ asset('uploads/ijazah/' . $siswa->ijazah_sd_mi) }}" alt="{{ $siswa->nama_siswa }} " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
+                                    <form class="form_upload_ijazah" action="{{ route('upload_ijazah') }}" enctype="multipart/form-data" method="post" accept-charset="utf-8"> @csrf
                                     <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
                                     <input type="file" name="upload_ijazah" id="upload_ijazah" accept=".jpg,.jpeg,.png">
                                     <button type="submit" class="btn mt-2 btn-primary btn-block">Upload</button>
                                     </form>
 
                                     <small> KTP Orangtua (salah satu)</small>
-                                    <img src="https://ppdb.smkalqodirijember.sch.id//uploads/scan_kk/25.jpg" alt="{{ $siswa->nama_siswa }} " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
-                                    <form action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                                    <img id="preview_ktp" src="{{ asset('uploads/ktp/' . $siswa->ktp_orang_tua) }}" alt="{{ $siswa->nama_siswa }} " style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
+                                    <form class="form_upload_ktp" action="{{ route('upload_ktp') }}" enctype="multipart/form-data" method="post" accept-charset="utf-8"> @csrf
                                     <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
                                     <input type="file" name="upload_ktp" id="upload_ktp" accept=".jpg,.jpeg,.png">
                                     <button type="submit" class="btn mt-2 btn-primary btn-block">Upload</button>
                                     </form>
                                     <hr>
+
+
+
                                 <h4> Status Pendaftaran & Validasi </h4>
-                                <form action="#" method="post">
-                                <input type="hidden" name="id_siswa" value="19">
+                                <form class="update_status" action="#" method="post"> @csrf
+                                <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
                                 <select class="form-control" id="status_verifikasi" name="status_verifikasi">
                                     <option selected="" value="BELUM VERIFIKASI">BELUM VERIFIKASI</option>
                                         <option value="SUDAH VERIFIKASI">SUDAH VERIFIKASI</option>
@@ -1191,14 +1203,15 @@
                                         <option value="SUDAH VERIFIKASI">SUDAH VERIFIKASI</option>
 
                                 </select>
-                                <button type="submit" class="btn btn-primary mt-3 mb-3 btn-block">Ubah Status Verifikasi</button>
+                                <button type="submit" class="btn btn-primary mt-3 mb-3 btn-block">Ubah Status Pendaftaran</button>
                             </form>
                                 <hr>
 
-                                <h4> Download Surat</h4>
+                                <h4> Opsi</h4>
                                 <a href="#">
-                            <button type="button" class="btn mt-2 mb-2 btn-primary btn-block">Formulir Pendaftaran</button>
+                                <button type="button" class="btn mt-2 mb-2 btn-primary btn-block">Formulir Pendaftaran</button>
                                 </a>
+                                <button type="button" class="btn mt-2 mb-2 btn-primary btn-block" data-toggle="modal" data-target="#pengaturan_akun">Pengaturan Akun</button>
                                 <hr>
                                 {{-- <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores repellendus molestiae exercitationem voluptatem tempora quo dolore nostrum dolor consequuntur itaque, alias fugit. Architecto rerum animi velit, beatae corrupti quos nam saepe asperiores aliquid quae culpa ea reiciendis ipsam numquam laborum aperiam. Id tempore consequuntur velit vitae corporis, aspernatur praesentium ratione!</p> --}}
                             </div>
@@ -1210,6 +1223,55 @@
         </div>
 
 
+        {{-- modal ubah password --}}
+                                    <div class="modal fade" id="pengaturan_akun" style="display: none;" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Pengaturan Akun  & Reset Password</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"><span>×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Nama Siswa : {{ $siswa->nama_siswa }}</p>
+                                                    <form action="#" method="post"> @csrf
+                                                        <input type="hidden" name="id_siswa" value="{{ $siswa->id}}">
+                                                        <div class="form-group row">
+                                                             <label class="col-lg-4 col-form-label" for="val-password">Email<span class="text-danger">*</span>
+                                                                    </label>
+                                                        <div class="col">
+                                                         <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email" value={{ $siswa->email }}>
+                                                        </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                             <label class="col-lg-4 col-form-label" for="val-password">Password <span class="text-danger">*</span>
+                                                                    </label>
+                                                        <div class="col">
+                                                         <input type="password" class="form-control" id="val-password" name="val-password" placeholder="Choose a safe one..">
+                                                        </div>
+                                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-password">Password <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col">
+                                                <input type="password" class="form-control" id="val-password" name="val-password" placeholder="Choose a safe one..">
+                                            </div>
+                                        </div>
+                                                        {{-- <input type="password" name="password" placeholder="Masukkan Password Baru">
+                                                        <input type="password" name="password_confirmation" placeholder="Masukkan Password Baru"> --}}
+
+                                                    {{-- <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p> --}}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Reset Password</button>
+                                                </div>
+                                            </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+        {{-- modal ubah password --}}
 
 
 
@@ -1579,6 +1641,38 @@ $(document).ready(function() {
 
 {{-- identitas wali --}}
 
+{{-- status daftar --}}
+<script>
+    $(document).ready(function() {
+        $('form.form-status').on('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            var formData = $(this).serialize(); // Serialize form data
+            
+            $.ajax({
+                url: $(this).attr('action'), // Use the form's action attribute
+                type: 'POST',
+                data: formData,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token for Laravel
+            },
+            success: function(response) {
+                // Display success notification
+                toastr.success(response.message);
+            },
+            error: function(xhr, status, error) {
+                // Display error notification
+                toastr.error('An error occurred while updating the data.');
+            }
+        });
+    });
+});
+
+
+</script>
+{{-- status daftar --}}
+
+
 
 {{-- upload file jquery --}}
 
@@ -1724,9 +1818,113 @@ $(document).ready(function() {
 
 {{-- KK --}}
 {{-- Ijazah --}}
+{{-- preview ijazah --}}
+
+<script>
+$(document).ready(function() {
+    $('#upload_ijazah').on('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                $('#preview_ijazah').attr('src', e.target.result); // Set the src of the img tag to the uploaded image
+            }
+            reader.readAsDataURL(file); // Convert the file to a data URL
+        }
+    });
+});
+</script>
+
+
+{{-- preview ijazah --}}
+
+
+<script>
+$(document).ready(function() {
+    $('form.form_upload_ijazah').on('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        var formData = new FormData(this); // Create FormData object
+
+        $.ajax({
+            url: $(this).attr('action'), // Use the form action URL
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                toastr.success('File uploaded successfully!');
+                // Optionally, update the image source to show the new image
+                $('img').attr('src', response.imageUrl);
+            },
+            error: function(xhr, status, error) {
+                toastr.error('An error occurred while uploading the file.');
+                console.error(error);
+            }
+        });
+    });
+});
+</script>
+
+
+
+
+
+
 
 {{-- Ijazah --}}
 {{-- KTP --}}
+
+{{-- preview ktp --}}
+
+<script>
+$(document).ready(function() {
+    $('#upload_ktp').on('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                $('#preview_ktp').attr('src', e.target.result); // Set the src of the img tag to the uploaded image
+            }
+            reader.readAsDataURL(file); // Convert the file to a data URL
+        }
+    });
+});
+</script>
+{{-- preview ktp --}}
+
+
+<script>
+$(document).ready(function() {
+    $('form.form_upload_ktp').on('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        var formData = new FormData(this); // Create FormData object
+
+        $.ajax({
+            url: $(this).attr('action'), // Use the form action URL
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                toastr.success('File uploaded successfully!');
+                // Optionally, update the image source to show the new image
+                $('img').attr('src', response.imageUrl);
+            },
+            error: function(xhr, status, error) {
+                toastr.error('An error occurred while uploading the file.');
+                console.error(error);
+            }
+        });
+    });
+});
+</script>
+
+
+
+
+
 {{-- KTP --}}
 
 {{-- upload file jquery --}}

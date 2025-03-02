@@ -37,7 +37,7 @@ class SiswaController extends Controller
 
             ->addColumn('foto', function ($row) {
                 // Pastikan 'foto_siswa' berisi path atau URL ke foto siswa
-                return '<img src="' . asset('storage/' . $row->foto_siswa) . '" alt="Foto Siswa" style="width: 50px; height: 50px; border-radius: 50%;">';
+                return '<img src="' . asset('uploads/foto_siswa/' . $row->foto_siswa) . '" alt="Foto Siswa" style="width: 50px; height: 50px; border-radius: 50%;">';
             })
 
             ->addColumn('action', function ($row) use ($csrf_token) {
@@ -540,14 +540,14 @@ class SiswaController extends Controller
         $siswa->save(); // Save the changes to the database
     }
 
- 
+
     return response()->json([
         'status' => 'success',
         'message' => 'Siswa data updated successfully',
         'data' => $siswa,
     ]);
 
-    
+
 
 
     }
@@ -590,20 +590,111 @@ class SiswaController extends Controller
         $siswa->save(); // Save the changes to the database
     }
 
- 
+
     return response()->json([
         'status' => 'success',
         'message' => 'Siswa data updated successfully',
         'data' => $siswa,
     ]);
 
-    
+
     }
-    public function upload_ijazah(){
+    public function upload_ijazah(Request $request){
+          // Validate the incoming request data
+        $validatedData = $request->validate([
+             'upload_ijazah' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // Max size 2MB
+        ]);
+
+    $siswa = Siswa::find($request->input('id_siswa'));
+          // Check if the Siswa record exists
+    if (!$siswa) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Siswa not found.',
+        ], 404);
+    }
+
+    // Handle file upload
+    if ($request->hasFile('upload_ijazah')) {
+         $file = $request->file('upload_ijazah');
+
+            if ($siswa->ijazah_sd_mi) {
+            $oldPhotoPath = public_path('uploads/ijazah/' . $siswa->ijazah_sd_mi);
+             if (file_exists($oldPhotoPath)) {
+                unlink($oldPhotoPath);
+            }
+        }
+        // Generate a unique filename
+        $filename = time() . '_' . $file->getClientOriginalName();
+
+        // Define the path to save the file
+        $path = public_path('uploads/ijazah');
+
+        // Move the uploaded file to the specified path
+        $file->move($path, $filename);
+
+        // Update the Siswa record with the filename
+        $siswa->ijazah_sd_mi = $filename; // Assuming 'foto_siswa' is the column name in your database
+        $siswa->save(); // Save the changes to the database
+    }
+
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Siswa data updated successfully',
+        'data' => $siswa,
+    ]);
+
+
 
     }
 
-     public function upload_ktp(){
+     public function upload_ktp(Request $request){
+              // Validate the incoming request data
+        $validatedData = $request->validate([
+             'upload_ktp' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // Max size 2MB
+        ]);
+
+    $siswa = Siswa::find($request->input('id_siswa'));
+          // Check if the Siswa record exists
+    if (!$siswa) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Siswa not found.',
+        ], 404);
+    }
+
+    // Handle file upload
+    if ($request->hasFile('upload_ktp')) {
+         $file = $request->file('upload_ktp');
+
+            if ($siswa->ktp_orang_tua) {
+            $oldPhotoPath = public_path('uploads/ktp/' . $siswa->ktp_orang_tua);
+             if (file_exists($oldPhotoPath)) {
+                unlink($oldPhotoPath);
+            }
+        }
+        // Generate a unique filename
+        $filename = time() . '_' . $file->getClientOriginalName();
+
+        // Define the path to save the file
+        $path = public_path('uploads/ktp');
+
+        // Move the uploaded file to the specified path
+        $file->move($path, $filename);
+
+        // Update the Siswa record with the filename
+        $siswa->ktp_orang_tua = $filename; // Assuming 'foto_siswa' is the column name in your database
+        $siswa->save(); // Save the changes to the database
+    }
+
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Siswa data updated successfully',
+        'data' => $siswa,
+    ]);
+
 
     }
     // upload file

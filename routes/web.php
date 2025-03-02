@@ -104,6 +104,8 @@ Route::middleware(['check.admin'])->group(function () {
       // upload foto
       Route::post('/update_foto_siswa', [SiswaController::class, 'upload_foto'])->name('upload_foto_siswa');
       Route::post('/update_kk_siswa', [SiswaController::class, 'upload_kk'])->name('upload_kk');
+      Route::post('/update_ijazah', [SiswaController::class, 'upload_ijazah'])->name('upload_ijazah');
+      Route::post('/update_ktp_ortu', [SiswaController::class, 'upload_ktp'])->name('upload_ktp');
     // Route::get('/user', [DashboardController::class,  'index'])->name('dashboard');
 
     // CRUD data akun siswa
