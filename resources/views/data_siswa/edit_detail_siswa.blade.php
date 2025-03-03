@@ -1187,20 +1187,33 @@
 
 
                                 <h4> Status Pendaftaran & Validasi </h4>
-                                <form class="update_status" action="#" method="post"> @csrf
-                                <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
-                                <select class="form-control" id="status_verifikasi" name="status_verifikasi">
-                                    <option selected="" value="BELUM VERIFIKASI">BELUM VERIFIKASI</option>
-                                        <option value="SUDAH VERIFIKASI">SUDAH VERIFIKASI</option>
+                                <form class="form-status" action="{{ route('update_status' , $siswa->id) }}" method="post"> @csrf
+                                       @method('POST') <!-- This is optional since POST is the default method -->
+                                <input type="hidden" name="siswa_id" value="{{ $siswa->id }}">
+                                <select class="form-control" id="status_selesai" name="status_selesai">
+
+                                    @if ($siswa->status_selesai == 'Belum Selesai')
+                                        <option  selected value="Belum Selesai">BELUM SELESAI</option>
+                                        <option value="Sudah Selesai">SUDAH SELESAI</option>
+                                    @else
+                                       <option  value="Belum Selesai">BELUM SELESAI</option>
+                                        <option selected value="Sudah Selesai">SUDAH SELESAI</option>
+                                    @endif
 
 
                                 </select>
 
 
 
-                                <select class="form-control mt-2" id="status_verifikasi" name="status_verifikasi">
-                                        <option selected="" value="BELUM VERIFIKASI">BELUM VERIFIKASI</option>
-                                        <option value="SUDAH VERIFIKASI">SUDAH VERIFIKASI</option>
+                                <select class="form-control mt-2" id="status_validasi" name="status_validasi">
+                                     @if ($siswa->status_validasi == 'Belum Validasi')
+                                        <option  selected value="Belum Validasi">BELUM VALIDASI</option>
+                                        <option value="Sudah Validasi">SUDAH VALIDASI</option>
+                                    @else
+                                       <option  value="Belum Validasi">BELUM VALIDASI</option>
+                                        <option selected value="Sudah Validasi">SUDAH VALIDASI</option>
+                                    @endif
+
 
                                 </select>
                                 <button type="submit" class="btn btn-primary mt-3 mb-3 btn-block">Ubah Status Pendaftaran</button>
@@ -1222,78 +1235,98 @@
             <!-- #/ container -->
         </div>
 
+{{-- Modal Ubah Password --}}
+<div class="modal fade" id="pengaturan_akun" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ubah Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="changePasswordForm" action="{{ route('ubah_password') }}" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                    @csrf
 
-        {{-- modal ubah password --}}
-                                    <div class="modal fade" id="pengaturan_akun" style="display: none;" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Pengaturan Akun  & Reset Password</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"><span>×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Nama Siswa : {{ $siswa->nama_siswa }}</p>
-                                                    <form action="#" method="post"> @csrf
-                                                        <input type="hidden" name="id_siswa" value="{{ $siswa->id}}">
-                                                        <div class="form-group row">
-                                                             <label class="col-lg-4 col-form-label" for="val-password">Email<span class="text-danger">*</span>
-                                                                    </label>
-                                                        <div class="col">
-                                                         <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email" value={{ $siswa->email }}>
-                                                        </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                             <label class="col-lg-4 col-form-label" for="val-password">Password <span class="text-danger">*</span>
-                                                                    </label>
-                                                        <div class="col">
-                                                         <input type="password" class="form-control" id="val-password" name="val-password" placeholder="Choose a safe one..">
-                                                        </div>
-                                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-password">Password <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col">
-                                                <input type="password" class="form-control" id="val-password" name="val-password" placeholder="Choose a safe one..">
-                                            </div>
-                                        </div>
-                                                        {{-- <input type="password" name="password" placeholder="Masukkan Password Baru">
-                                                        <input type="password" name="password_confirmation" placeholder="Masukkan Password Baru"> --}}
+                    <input type="hidden" name="siswa_id" value="{{ $siswa->id }}">
 
-                                                    {{-- <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p> --}}
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Reset Password</button>
-                                                </div>
-                                            </form>
-                                            </div>
-                                        </div>
-                                    </div>
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ $siswa->email }}" required>
+                    </div>
 
-        {{-- modal ubah password --}}
+                    <div class="form-group">
+                        <label for="new_password">Password Baru</label>
+                        <input type="password" class="form-control" id="new_password" name="new_password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new_password_confirmation">Konfirmasi Password Baru</label>
+                        <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation" required>
+                    </div>
 
 
 
-
-        {{-- load JQUERY --}}
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-{{-- API sekolah indonesia --}}
-
-
+                    <button type="submit" class="btn btn-primary">Ubah Password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
-    $(document).ready(function() {
-        // Ambil nilai NPSN dari input
-        const npsn = $('#npsn_sekolah_asal').val();
+$(document).ready(function() {
+    // Function to handle AJAX form submission
+    function handleFormSubmission(formId, modalId = null) {
+        $(formId).on('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
 
-        // Jika NPSN sudah terisi, langsung ambil data dari API
+            var formData = $(this).serialize(); // Serialize form data
+
+            $.ajax({
+                url: $(this).attr('action'), // Use the form's action attribute
+                type: 'POST',
+                data: formData,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token for Laravel
+                },
+                success: function(response) {
+                    // Display success notification
+                    toastr.success(response.message);
+                    if (modalId) {
+                        $(modalId).modal('hide'); // Hide the modal if provided
+                    }
+                },
+                error: function(xhr) {
+                    // Handle error response
+                    if (xhr.status === 422) { // Check for validation errors
+                        var errors = xhr.responseJSON.errors;
+                        if (errors) {
+                            $.each(errors, function(key, value) {
+                                toastr.error(value[0]); // Display each error message
+                            });
+                        } else {
+                            toastr.error('An error occurred while processing the request.');
+                        }
+                    } else {
+                        toastr.error('An unexpected error occurred.');
+                    }
+                }
+            });
+        });
+    }
+
+    // Handle password change form submission
+    handleFormSubmission('#changePasswordForm', '#pengaturan_akun');
+
+    // Handle API sekolah indonesia
+    $('#npsn_sekolah_asal').on('blur', function() {
+        const npsn = $(this).val(); // Ambil nilai NPSN yang baru
+
         if (npsn) {
             const apiUrl = `https://api-sekolah-indonesia.vercel.app/sekolah?npsn=${npsn}`;
 
-            // Lakukan request ke API
             $.ajax({
                 url: apiUrl,
                 method: 'GET',
@@ -1317,372 +1350,125 @@
                 }
             });
         }
-
-        // Event ketika input NPSN kehilangan fokus (blur)
-        $('#npsn_sekolah_asal').on('blur', function() {
-            const npsnBaru = $(this).val(); // Ambil nilai NPSN yang baru
-
-            // Jika NPSN baru terisi, ambil data dari API
-            if (npsnBaru) {
-                const apiUrl = `https://api-sekolah-indonesia.vercel.app/sekolah?npsn=${npsnBaru}`;
-
-                // Lakukan request ke API
-                $.ajax({
-                    url: apiUrl,
-                    method: 'GET',
-                    success: function(response) {
-                        if (response.status === 'success' && response.dataSekolah.length > 0) {
-                            const sekolah = response.dataSekolah[0]; // Ambil data pertama
-
-                            // Isi data ke inputan
-                            $('#nama_sekolah_asal').val(sekolah.sekolah);
-                            $('#jenis_sekolah_asal').val(sekolah.bentuk);
-                            $('#alamat_sekolah_provinsi').val(sekolah.propinsi);
-                            $('#alamat_sekolah_kabupaten').val(sekolah.kabupaten_kota);
-                            $('#alamat_sekolah_kecamatan').val(sekolah.kecamatan);
-                            $('#alamat_sekolah_lengkap').val(sekolah.alamat_jalan);
-                        } else {
-                            // alert('Sekolah dengan NPSN tersebut tidak ditemukan.');
-                        }
-                    },
-                    error: function() {
-                        // alert('Terjadi kesalahan saat mengambil data dari API.');
-                    }
-                });
-            } else {
-                // alert('Silakan masukkan NPSN.');
-            }
-        });
     });
-</script>
 
+    // Fetch provinces
+    $.get('/get-provinces', function(data) {
+        $.each(data, function(key, value) {
+            var selected = (value.code == '{{ $siswa->alamat_provinsi }}') ? 'selected' : '';
+            $('#provinsi_siswa').append('<option value="' + value.code + '" ' + selected + '>' + value.name + '</option>');
+        });
 
-{{-- API sekolah indonesia --}}
+        // Trigger change event to load cities if province is already selected
+        if ('{{ $siswa->alamat_provinsi }}') {
+            $('#provinsi_siswa').trigger('change');
+        }
+    });
 
+    // Province change event
+    $('#provinsi_siswa').change(function() {
+        var province_id = $(this).val();
+        $('#kabupaten_siswa').empty().append('<option value="">Please select</option>');
+        $('#kecamatan_siswa').empty().append('<option value="">Please select</option>');
+        $('#desa_kelurahan_siswa').empty().append('<option value="">Please select</option>');
 
-{{-- JQUERY EDIT DATA ALAMAT --}}
+        if (province_id) {
+            $.get('/get-cities?province_code=' + province_id, function(data) {
+                $.each(data, function(key, value) {
+                    var selected = (value.code == '{{ $siswa->alamat_kabupaten }}') ? 'selected' : '';
+                    $('#kabupaten_siswa').append('<option value="' + value.code + '" ' + selected + '>' + value.name + '</option>');
+                });
 
-
-
-<script>
-    $(document).ready(function() {
-        // Fetch provinces
-        $.get('/get-provinces', function(data) {
-            $.each(data, function(key, value) {
-                var selected = (value.code == '{{ $siswa->alamat_provinsi }}') ? 'selected' : '';
-                $('#provinsi_siswa').append('<option value="' + value.code + '" ' + selected + '>' + value.name + '</option>');
+                // Trigger change event to load districts if city is already selected
+                if ('{{ $siswa->alamat_kabupaten }}') {
+                    $('#kabupaten_siswa').trigger('change');
+                }
             });
+        }
+    });
 
-            // Trigger change event to load cities if province is already selected
-            if ('{{ $siswa->alamat_provinsi }}') {
-                $('#provinsi_siswa').trigger('change');
-            }
-        });
+    // City change event
+    $('#kabupaten_siswa').change(function() {
+        var city_id = $(this).val();
+        $('#kecamatan_siswa').empty().append('<option value="">Please select</option>');
+        $('#desa_kelurahan_siswa').empty().append('<option value="">Please select</option>');
 
-        // Province change event
-        $('#provinsi_siswa').change(function() {
-            var province_id = $(this).val();
-            $('#kabupaten_siswa').empty().append('<option value="">Please select</option>');
-            $('#kecamatan_siswa').empty().append('<option value="">Please select</option>');
-            $('#desa_kelurahan_siswa').empty().append('<option value="">Please select</option>');
-
-            if (province_id) {
-                $.get('/get-cities?province_code=' + province_id, function(data) {
-                    $.each(data, function(key, value) {
-                        var selected = (value.code == '{{ $siswa->alamat_kabupaten }}') ? 'selected' : '';
-                        $('#kabupaten_siswa').append('<option value="' + value.code + '" ' + selected + '>' + value.name + '</option>');
-                    });
-
-                    // Trigger change event to load districts if city is already selected
-                    if ('{{ $siswa->alamat_kabupaten }}') {
-                        $('#kabupaten_siswa').trigger('change');
-                    }
+        if (city_id) {
+            $.get('/get-districts?city_code=' + city_id, function(data) {
+                $.each(data, function(key, value) {
+                    var selected = (value.code == '{{ $siswa->alamat_kecamatan }}') ? 'selected' : '';
+                    $('#kecamatan_siswa').append('<option value="' + value.code + '" ' + selected + '>' + value.name + '</option>');
                 });
-            }
-        });
 
-        // City change event
-        $('#kabupaten_siswa').change(function() {
-            var city_id = $(this).val();
-            $('#kecamatan_siswa').empty().append('<option value="">Please select</option>');
-            $('#desa_kelurahan_siswa').empty().append('<option value="">Please select</option>');
+                // Trigger change event to load villages if district is already selected
+                if ('{{ $siswa->alamat_kecamatan }}') {
+                    $('#kecamatan_siswa').trigger('change');
+                }
+            });
+        }
+    });
 
-            if (city_id) {
-                $.get('/get-districts?city_code=' + city_id, function(data) {
-                    $.each(data, function(key, value) {
-                        var selected = (value.code == '{{ $siswa->alamat_kecamatan }}') ? 'selected' : '';
-                        $('#kecamatan_siswa').append('<option value="' + value.code + '" ' + selected + '>' + value.name + '</option>');
-                    });
+    // District change event
+    $('#kecamatan_siswa').change(function() {
+        var district_id = $(this).val();
+        $('#desa_kelurahan_siswa').empty().append('<option value="">Please select</option>');
 
-                    // Trigger change event to load villages if district is already selected
-                    if ('{{ $siswa->alamat_kecamatan }}') {
-                        $('#kecamatan_siswa').trigger('change');
-                    }
+        if (district_id) {
+            $.get('/get-villages?district_code=' + district_id, function(data) {
+                $.each(data, function(key, value) {
+                    var selected = (value.code == '{{ $siswa->alamat_desa }}') ? 'selected' : '';
+                    $('#desa_kelurahan_siswa').append('<option value="' + value.code + '" ' + selected + '>' + value.name + '</option>');
                 });
-            }
-        });
-
-        // District change event
-        $('#kecamatan_siswa').change(function() {
-            var district_id = $(this).val();
-            $('#desa_kelurahan_siswa').empty().append('<option value="">Please select</option>');
-
-            if (district_id) {
-                $.get('/get-villages?district_code=' + district_id, function(data) {
-                    $.each(data, function(key, value) {
-                        var selected = (value.code == '{{ $siswa->alamat_desa }}') ? 'selected' : '';
-                        $('#desa_kelurahan_siswa').append('<option value="' + value.code + '" ' + selected + '>' + value.name + '</option>');
-                    });
-                });
-            }
-        });
+            });
+        }
     });
-</script>
 
+    // Handle form submissions for various forms
+    handleFormSubmission('.form-identitassiswa1');
+    handleFormSubmission('.form-identitassiswa2');
+    handleFormSubmission('.form-alamat_siswa');
+    handleFormSubmission('.form-pendidikan_siswa');
+    handleFormSubmission('.form-ortusiswa');
+    handleFormSubmission('.form-walisiswa');
+    handleFormSubmission('.form-status');
 
-
-{{-- JQUERY EDIT DATA ALAMAT --}}
-
-
-{{-- kirim formulir per-module jquery --}}
-
-{{-- kirim identitas siswa --}}
-
-<script>
-$(document).ready(function() {
-    $('form.form-identitassiswa1').on('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        var formData = $(this).serialize(); // Serialize form data
-
-        $.ajax({
-            url: $(this).attr('action'), // Use the form's action attribute
-            type: 'POST',
-            data: formData,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token for Laravel
-            },
-            success: function(response) {
-                // Display success notification
-                toastr.success(response.message);
-            },
-            error: function(xhr, status, error) {
-                // Display error notification
-                toastr.error('An error occurred while updating the data.');
-            }
-        });
-    });
-});
-</script>
-{{-- kirim identitas siswa --}}
-
-
-{{-- kirim identitas lengkap siswa --}}
-<script>
-  $(document).ready(function() {
-    $('form.form-identitassiswa2').on('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        var formData = $(this).serialize(); // Serialize form data
-
-        $.ajax({
-            url: $(this).attr('action'), // Use the form's action attribute
-            type: 'POST',
-            data: formData,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token for Laravel
-            },
-            success: function(response) {
-                // Display success notification
-                toastr.success(response.message);
-            },
-            error: function(xhr, status, error) {
-                // Display error notification
-                toastr.error('An error occurred while updating the data.');
-            }
-        });
-    });
-});
-
-
-    </script>
-{{-- kirim identitas lengkap siswa --}}
-{{-- kirim alamat siswa --}}
-<script>
-  $(document).ready(function() {
-    $('form.form-alamat_siswa').on('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        var formData = $(this).serialize(); // Serialize form data
-
-        $.ajax({
-            url: $(this).attr('action'), // Use the form's action attribute
-            type: 'POST',
-            data: formData,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token for Laravel
-            },
-            success: function(response) {
-                // Display success notification
-                toastr.success(response.message);
-            },
-            error: function(xhr, status, error) {
-                // Display error notification
-                toastr.error('An error occurred while updating the data.');
-            }
-        });
-    });
-});
-
-
-    </script>
-
-
-{{-- kirim alamat siswa --}}
-
-
-{{-- kirim riwayat pendidikan --}}
-<script>
-  $(document).ready(function() {
-    $('form.form-pendidikan_siswa').on('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        var formData = $(this).serialize(); // Serialize form data
-
-        $.ajax({
-            url: $(this).attr('action'), // Use the form's action attribute
-            type: 'POST',
-            data: formData,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token for Laravel
-            },
-            success: function(response) {
-                // Display success notification
-                toastr.success(response.message);
-            },
-            error: function(xhr, status, error) {
-                // Display error notification
-                toastr.error('An error occurred while updating the data.');
-            }
-        });
-    });
-});
-
-
-    </script>
-
-
-{{-- kirim riwayat pendidikan --}}
-
-{{-- identitas ortu --}}
-<script>
-  $(document).ready(function() {
-    $('form.form-ortusiswa').on('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        var formData = $(this).serialize(); // Serialize form data
-
-        $.ajax({
-            url: $(this).attr('action'), // Use the form's action attribute
-            type: 'POST',
-            data: formData,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token for Laravel
-            },
-            success: function(response) {
-                // Display success notification
-                toastr.success(response.message);
-            },
-            error: function(xhr, status, error) {
-                // Display error notification
-                toastr.error('An error occurred while updating the data.');
-            }
-        });
-    });
-});
-
-
-    </script>
-
-{{-- identitas ortu --}}
-
-
-{{-- identitas wali --}}
-
-<script>
-  $(document).ready(function() {
-    $('form.form-walisiswa').on('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        var formData = $(this).serialize(); // Serialize form data
-
-        $.ajax({
-            url: $(this).attr('action'), // Use the form's action attribute
-            type: 'POST',
-            data: formData,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token for Laravel
-            },
-            success: function(response) {
-                // Display success notification
-                toastr.success(response.message);
-            },
-            error: function(xhr, status, error) {
-                // Display error notification
-                toastr.error('An error occurred while updating the data.');
-            }
-        });
-    });
-});
-
-
-    </script>
-
-
-{{-- identitas wali --}}
-
-{{-- status daftar --}}
-<script>
-    $(document).ready(function() {
-        $('form.form-status').on('submit', function(event) {
+    // Handle file upload forms
+    function handleFileUpload(formId, previewId) {
+        $(formId).on('submit', function(event) {
             event.preventDefault(); // Prevent the default form submission
-            
-            var formData = $(this).serialize(); // Serialize form data
-            
+
+            var formData = new FormData(this); // Create FormData object
+
             $.ajax({
-                url: $(this).attr('action'), // Use the form's action attribute
+                url: $(this).attr('action'), // Use the form action URL
                 type: 'POST',
                 data: formData,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF token for Laravel
-            },
-            success: function(response) {
-                // Display success notification
-                toastr.success(response.message);
-            },
-            error: function(xhr, status, error) {
-                // Display error notification
-                toastr.error('An error occurred while updating the data.');
-            }
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    toastr.success('File uploaded successfully!');
+                    // Optionally, update the image source to show the new image
+                    $(previewId).attr('src', response.imageUrl);
+                },
+                error: function(xhr) {
+                    if (xhr.status === 422) { // Check for validation errors
+                        var errors = xhr.responseJSON.errors;
+                        if (errors) {
+                            $.each(errors, function(key, value) {
+                                toastr.error(value[0]); // Display each error message
+                            });
+                        } else {
+                            toastr.error('An error occurred while uploading the file.');
+                        }
+                    } else {
+                        toastr.error('An unexpected error occurred.');
+                    }
+                }
+            });
         });
-    });
-});
+    }
 
-
-</script>
-{{-- status daftar --}}
-
-
-
-{{-- upload file jquery --}}
-
-{{-- foto--}}
-
-{{-- preview image langsung ketika  sudah upload  --}}
-
-
-<script>
-$(document).ready(function() {
+    // Handle file upload for foto
     $('#upload_foto').on('change', function() {
         const file = this.files[0];
         if (file) {
@@ -1693,77 +1479,9 @@ $(document).ready(function() {
             reader.readAsDataURL(file); // Convert the file to a data URL
         }
     });
-});
-</script>
-{{-- preview image langsung ketika  sudah upload  --}}
+    handleFileUpload('.form_upload_foto', '#preview_image');
 
-
-<script>
-$(document).ready(function() {
-    $('form.form_upload_foto').on('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        var formData = new FormData(this); // Create FormData object
-
-        $.ajax({
-            url: $(this).attr('action'), // Use the form action URL
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                toastr.success('File uploaded successfully!');
-                // Optionally, update the image source to show the new image
-                $('img').attr('src', response.imageUrl);
-            },
-            error: function(xhr, status, error) {
-                toastr.error('An error occurred while uploading the file.');
-                console.error(error);
-            }
-        });
-    });
-});
-</script>
-
-
-
-{{-- --------------------------}}
-{{-- <script>
-$(document).ready(function() {
-    $('form.form-upload_foto').on('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        var formData = new FormData(this); // Create a FormData object
-
-        $.ajax({
-            url: $(this).attr('action'), // Use the form's action attribute
-        //    url: '/update-siswa', // URL to send the form data
-            type: 'POST',
-            data: formData,
-            contentType: false, // Prevent jQuery from overriding content type
-            processData: false, // Prevent jQuery from processing the data
-            success: function(response) {
-                // Handle success response
-                toastr.success('Photo uploaded successfully!');
-                // Optionally, update the image source to show the new photo
-                $('img[alt="{{ $siswa->nama_siswa }}"]').attr('src', response.new_image_url);
-            },
-            error: function(xhr, status, error) {
-                // Handle error response
-                toastr.error('An error occurred while uploading the photo.');
-                console.error(error);
-            }
-        });
-    });
-});
-</script> --}}
-{{-- foto--}}
-{{-- KK --}}
-
-{{-- preview kk --}}
-
-<script>
-$(document).ready(function() {
+    // Handle file upload for KK
     $('#upload_kk').on('change', function() {
         const file = this.files[0];
         if (file) {
@@ -1774,54 +1492,9 @@ $(document).ready(function() {
             reader.readAsDataURL(file); // Convert the file to a data URL
         }
     });
-});
-</script>
-{{-- preview kk --}}
+    handleFileUpload('.form_upload_kk', '#preview_kk');
 
-
-<script>
-$(document).ready(function() {
-    $('form.form_upload_kk').on('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        var formData = new FormData(this); // Create FormData object
-
-        $.ajax({
-            url: $(this).attr('action'), // Use the form action URL
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                toastr.success('File uploaded successfully!');
-                // Optionally, update the image source to show the new image
-                $('img').attr('src', response.imageUrl);
-            },
-            error: function(xhr, status, error) {
-                toastr.error('An error occurred while uploading the file.');
-                console.error(error);
-            }
-        });
-    });
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-{{-- KK --}}
-{{-- Ijazah --}}
-{{-- preview ijazah --}}
-
-<script>
-$(document).ready(function() {
+    // Handle file upload for Ijazah
     $('#upload_ijazah').on('change', function() {
         const file = this.files[0];
         if (file) {
@@ -1832,53 +1505,9 @@ $(document).ready(function() {
             reader.readAsDataURL(file); // Convert the file to a data URL
         }
     });
-});
-</script>
+    handleFileUpload('.form_upload_ijazah', '#preview_ijazah');
 
-
-{{-- preview ijazah --}}
-
-
-<script>
-$(document).ready(function() {
-    $('form.form_upload_ijazah').on('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        var formData = new FormData(this); // Create FormData object
-
-        $.ajax({
-            url: $(this).attr('action'), // Use the form action URL
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                toastr.success('File uploaded successfully!');
-                // Optionally, update the image source to show the new image
-                $('img').attr('src', response.imageUrl);
-            },
-            error: function(xhr, status, error) {
-                toastr.error('An error occurred while uploading the file.');
-                console.error(error);
-            }
-        });
-    });
-});
-</script>
-
-
-
-
-
-
-
-{{-- Ijazah --}}
-{{-- KTP --}}
-
-{{-- preview ktp --}}
-
-<script>
-$(document).ready(function() {
+    // Handle file upload for KTP
     $('#upload_ktp').on('change', function() {
         const file = this.files[0];
         if (file) {
@@ -1889,41 +1518,10 @@ $(document).ready(function() {
             reader.readAsDataURL(file); // Convert the file to a data URL
         }
     });
+    handleFileUpload('.form_upload_ktp', '#preview_ktp');
 });
+
 </script>
-{{-- preview ktp --}}
-
-
-<script>
-$(document).ready(function() {
-    $('form.form_upload_ktp').on('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        var formData = new FormData(this); // Create FormData object
-
-        $.ajax({
-            url: $(this).attr('action'), // Use the form action URL
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                toastr.success('File uploaded successfully!');
-                // Optionally, update the image source to show the new image
-                $('img').attr('src', response.imageUrl);
-            },
-            error: function(xhr, status, error) {
-                toastr.error('An error occurred while uploading the file.');
-                console.error(error);
-            }
-        });
-    });
-});
-</script>
-
-
-
-
 
 {{-- KTP --}}
 
