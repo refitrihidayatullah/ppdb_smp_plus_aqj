@@ -38,6 +38,18 @@ class SiswaController extends Controller
             ->addColumn('foto', function ($row) {
                 return '<img src="' . asset('uploads/foto_siswa/' . $row->foto_siswa) . '" alt="Foto Siswa" style="width: 50px; height: 50px; border-radius: 50%;">';
             })
+
+         ->addColumn('status', function ($row) {
+    $statusValidasi = $row->status_validasi == 'Belum Validasi'
+        ? '<i class="fa fa-circle-o text-warning mr-2"></i> Belum Validasi'
+        : '<i class="fa fa-circle-o text-success mr-2"></i> Sudah Validasi';
+
+    $statusSelesai = $row->status_selesai == 'Belum Selesai'
+        ? '<i class="fa fa-circle-o text-warning mr-2"></i> Belum Selesai'
+        : '<i class="fa fa-circle-o text-success mr-2"></i> Sudah Selesai';
+
+    return $statusValidasi . '<br>' . $statusSelesai;
+})
             ->addColumn('action', function ($row) {
                 return '<div class="btn-group" role="group">
                     <a href="' . route('siswa.edit', $row->id) . '" class="btn btn-sm btn-warning">
@@ -52,7 +64,7 @@ class SiswaController extends Controller
                     <input type="hidden" name="_token" value="' . csrf_token() . '">
                 </form>';
             })
-            ->rawColumns(['foto', 'action'])
+            ->rawColumns(['foto', 'status',  'action'])
             ->make(true);
     }
 

@@ -143,3 +143,4 @@ Route::get('/cari-sekolah', [SekolahController::class, 'index'])->name('cari.sek
 Route::get('/cari-sekolah/action', [SekolahController::class, 'cariSekolah'])->name('cari.sekolah');
 
 // ROUTES untuk mencari sekolah by NPSN
+// testing blade
