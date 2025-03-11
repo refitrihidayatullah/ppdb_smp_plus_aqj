@@ -12,11 +12,13 @@ class AuthController extends Controller
 {
     public function showLoginForm()
     {
+
+
         // Cek apakah pengguna sudah login
         if (Auth::guard('siswa')->check()) {
-            return redirect()->route('siswa.dashboard');
+            return redirect()->route('dashboard_siswa');
         } elseif (Auth::guard('admin')->check()) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('dashboard');
         }
         return view('auth.login');
     }
@@ -49,12 +51,12 @@ class AuthController extends Controller
         if (Auth::guard('siswa')->attempt($credentials)) {
             return response()->json([
                 'success' => true,
-                'redirect_url' => '/form_siswa'
+                'redirect_url' => route('dashboard_siswa')
             ]);
         } elseif (Auth::guard('admin')->attempt($credentials)) {
             return response()->json([
                 'success' => true,
-                'redirect_url' =>  route('dashboard')
+                'redirect_url' => route('dashboard')
                 // 'redirect_url' => '/dashboard'
             ]);
         }

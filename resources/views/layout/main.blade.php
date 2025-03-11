@@ -163,16 +163,7 @@
 
 
                     <li class="nav-label">Master Akun</li>
-                    {{-- <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                          <i class="fa-solid fa-users"></i> <span class="nav-text">Akun PPDB Siswa</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="./email-inbox.html">Data Akun PPDB Siswa</a></li>
-                            <li><a href="./email-read.html">Tambah Akun PPDB Siswa</a></li>
 
-                        </ul>
-                    </li> --}}
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                            <i class="fa-solid fa-users"></i><span class="nav-text">Akun Administator</span>
@@ -189,7 +180,7 @@
                            <i class="fa-solid fa-list"></i><span class="nav-text">Data Siswa Terdaftar</span>
                         </a>
                         <ul aria-expanded="false">
-                             <li><a href="{{ route('tambah_siswa'); }}">Tambah Akun Siswa</a></li>
+                             <li><a href="{{ route('tambah_siswa') }}">Tambah Akun Siswa</a></li>
                             <li><a href="{{ route('data_siswa')}}">Lihat Data Siswa</a></li>
                             <li><a href="./ui-alert.html">Ekspor Data</a></li>
 

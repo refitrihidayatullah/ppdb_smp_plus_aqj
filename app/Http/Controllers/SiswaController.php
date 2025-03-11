@@ -369,7 +369,7 @@ class SiswaController extends Controller
             ], 422);
         }
     }
-
+    
     /**
      * Update riwayat pendidikan siswa for the specified resource.
      */
