@@ -15,7 +15,8 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Edit/Lihat Detail Siswa : {{ $siswa->nama_siswa }} -
-                                {{  $siswa->tahun_daftar }}</h4>
+                                {{  $siswa->tahun_daftar }}
+                            </h4>
                             <hr>
                             <p> Klik Per-bagian yang ada di bawah </p>
                             <div id="accordion-one" class="accordion">

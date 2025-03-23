@@ -55,9 +55,28 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['check.siswa'])->group(function () {
-    Route::get('form_siswa', [SiswaDaftarController::class,  'index'])->name('dashboard_siswa');
+    Route::get('form_siswa', [SiswaDaftarController::class, 'index'])->name('dashboard_siswa');
 
 
+
+    // JQUERY kirim data
+
+    // query form identitas siswa
+    Route::post('/siswa-update-form', [SiswaDaftarController::class, 'send_kelas_dom'])->name('siswa_form_update_identitas');
+    Route::post('/siswa-update_id_siswa', [SiswaDaftarController::class, 'send_identitas_siswa'])->name('siswa_form_update_identitas_siswa');
+    Route::post('/siswa-update_alamat_siswa', [SiswaDaftarController::class, 'send_alamat_siswa'])->name('siswa_form_update_alamat_siswa');
+    Route::post('/siswa-update_pendidikan_siswa', [SiswaDaftarController::class, 'send_riwayat_pendidikan_siswa'])->name('siswa_form_update_pendidikan_siswa');
+    Route::post('/siswa-update_ortu_siswa', [SiswaDaftarController::class, 'send_ortu_siswa'])->name('siswa_form_update_ortu_siswa');
+    Route::post('/siswa-update_wali_siswa', [SiswaDaftarController::class, 'send_wali_siswa'])->name('siswa_form_update_wali_siswa');
+    // Route::post('/update_status', [SiswaDaftarController::class, 'send_status_daftar'])->name('update_status');
+    // query form identitas siswa
+    // upload foto
+    Route::post('/siswa-update_foto_siswa', [SiswaDaftarController::class, 'upload_foto'])->name('upload_foto_siswa');
+    Route::post('/siswa-update_kk_siswa', [SiswaDaftarController::class, 'upload_kk'])->name('upload_kk');
+    Route::post('/siswa-update_ijazah', [SiswaDaftarController::class, 'upload_ijazah'])->name('upload_ijazah');
+    Route::post('/siswa-update_ktp_ortu', [SiswaDaftarController::class, 'upload_ktp'])->name('upload_ktp');
+    // Route::post('/change-password', [SiswaDaftarController::class, 'changePassword'])->name('ubah_password');
+    // JQUERY kirim data
 
 
     // Route::get('form_siswa', function () {
@@ -72,7 +91,7 @@ Route::middleware(['check.siswa'])->group(function () {
 
 Route::middleware(['check.admin'])->group(function () {
     // routes ke dashboard
-    Route::get('/dashboard_admin', [DashboardController::class,  'index'])->name('dashboard');
+    Route::get('/dashboard_admin', [DashboardController::class, 'index'])->name('dashboard');
     // CRUD admin
     Route::get('/users', [UserController::class, 'index'])->name('users');
     Route::get('/users/tambah_user', [UserController::class, 'create'])->name('tambah_user');
@@ -100,17 +119,17 @@ Route::middleware(['check.admin'])->group(function () {
     Route::post('/update-form', [SiswaController::class, 'send_kelas_dom'])->name('form_update_identitas');
     Route::post('/update_id_siswa', [SiswaController::class, 'send_identitas_siswa'])->name('form_update_identitas_siswa');
     Route::post('/update_alamat_siswa', [SiswaController::class, 'send_alamat_siswa'])->name('form_update_alamat_siswa');
-     Route::post('/update_pendidikan_siswa', [SiswaController::class, 'send_riwayat_pendidikan_siswa'])->name('form_update_pendidikan_siswa');
+    Route::post('/update_pendidikan_siswa', [SiswaController::class, 'send_riwayat_pendidikan_siswa'])->name('form_update_pendidikan_siswa');
     Route::post('/update_ortu_siswa', [SiswaController::class, 'send_ortu_siswa'])->name('form_update_ortu_siswa');
-      Route::post('/update_wali_siswa', [SiswaController::class, 'send_wali_siswa'])->name('form_update_wali_siswa');
-      Route::post('/update_status', [SiswaController::class, 'send_status_daftar'])->name('update_status');
-      // query form identitas siswa
-      // upload foto
-      Route::post('/update_foto_siswa', [SiswaController::class, 'upload_foto'])->name('upload_foto_siswa');
-      Route::post('/update_kk_siswa', [SiswaController::class, 'upload_kk'])->name('upload_kk');
-      Route::post('/update_ijazah', [SiswaController::class, 'upload_ijazah'])->name('upload_ijazah');
-      Route::post('/update_ktp_ortu', [SiswaController::class, 'upload_ktp'])->name('upload_ktp');
-      Route::post('/change-password', [SiswaController::class, 'changePassword'])->name('ubah_password');
+    Route::post('/update_wali_siswa', [SiswaController::class, 'send_wali_siswa'])->name('form_update_wali_siswa');
+    Route::post('/update_status', [SiswaController::class, 'send_status_daftar'])->name('update_status');
+    // query form identitas siswa
+    // upload foto
+    Route::post('/update_foto_siswa', [SiswaController::class, 'upload_foto'])->name('upload_foto_siswa');
+    Route::post('/update_kk_siswa', [SiswaController::class, 'upload_kk'])->name('upload_kk');
+    Route::post('/update_ijazah', [SiswaController::class, 'upload_ijazah'])->name('upload_ijazah');
+    Route::post('/update_ktp_ortu', [SiswaController::class, 'upload_ktp'])->name('upload_ktp');
+    Route::post('/change-password', [SiswaController::class, 'changePassword'])->name('ubah_password');
 
     // Route::get('/user', [DashboardController::class,  'index'])->name('dashboard');
 

@@ -9,7 +9,10 @@
     <!-- MDB icon -->
     <link rel="icon" href="{{ asset('landing-page/img/logo-smp.png') }}" type="image/x-icon" />
     <!-- Font Awesome -->
+    {{-- csrf token --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    {{-- csrf token --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <!-- Google Fonts Roboto -->
     <link rel="stylesheet"
@@ -19,6 +22,15 @@
 
     {{-- my style --}}
     <link rel="stylesheet" href="{{ asset('landing-page/') }}/style.css" />
+
+    {{-- toastr --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Toastr CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    {{-- toastr --}}
+
 </head>
 
 <body style=" background-color: #022377">
