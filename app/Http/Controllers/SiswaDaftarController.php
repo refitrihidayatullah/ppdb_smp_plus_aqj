@@ -650,42 +650,68 @@ class SiswaDaftarController extends Controller
         }
     }
 
+    // public function send_status_daftar(Request $request)
+    // {
+    //     // Validate the incoming request data
+    //     $validatedData = $request->validate([
+    //         'status_selesai' => 'required|string',
+    //         // 'status_validasi' => 'required|string',
+    //     ]);
+
+    //     // Find the Siswa record to update
+    //     $siswa = Siswa::find(Auth::guard('siswa')->user()->id); // Assuming you have a siswa_id in the form
+
+    //     if (!$siswa) {
+    //         return response()->json([
+    //             'status' => 'error',
+    //             'message' => 'Siswa not found.',
+    //         ], 404);
+    //     }
+
+    //     // Update the Siswa record
+    //     $siswa_update = [
+    //         'status_selesai' => $validatedData['status_selesai'],
+    //         // 'status_validasi' => $validatedData['status_validasi'],
+
+    //     ];
+
+
+    //     $siswa->update($siswa_update);
+
+    //     return response()->json([
+    //         'status' => 'success',
+    //         'message' => 'Status Sudah Berubah',
+    //         'data' => $validatedData,
+    //         'redirect' => redirect(route('dashboard_siswa')),
+    //     ]);
+    //     // return r;
+
+
+    // }
+
     public function send_status_daftar(Request $request)
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
             'status_selesai' => 'required|string',
-            'status_validasi' => 'required|string',
         ]);
 
         // Find the Siswa record to update
-        $siswa = Siswa::find(Auth::guard('siswa')->user()->id); // Assuming you have a siswa_id in the form
+        $siswa = Siswa::find(Auth::guard('siswa')->user()->id);
 
         if (!$siswa) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Siswa not found.',
-            ], 404);
+            return redirect()->route('dashboard_siswa')
+                ->with('error', 'Data siswa tidak ditemukan');
         }
 
         // Update the Siswa record
-        $siswa_update = [
+        $siswa->update([
             'status_selesai' => $validatedData['status_selesai'],
-            'status_validasi' => $validatedData['status_validasi'],
-
-        ];
-
-
-        $siswa->update($siswa_update);
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Status Sudah Berubah',
-            'data' => $validatedData,
         ]);
+
+        return redirect()->route(route: 'dashboard_siswa')
+            ->with('success', 'Status pendaftaran berhasil diperbarui!');
     }
-
-
 
 
 
