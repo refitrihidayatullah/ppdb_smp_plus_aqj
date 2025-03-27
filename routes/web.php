@@ -77,7 +77,10 @@ Route::middleware(['check.siswa'])->group(function () {
     Route::post('/siswa-update_ktp_ortu', [SiswaDaftarController::class, 'upload_ktp'])->name('siswa_upload_ktp');
     // Route::post('/change-password', [SiswaDaftarController::class, 'changePassword'])->name('ubah_password');
     // JQUERY kirim data
+// ekspor PDF
+    Route::get('/siswa-generate-pdf', [SiswaDaftarController::class, 'generate_pdf'])->name('generate_pdf');
 
+    // ekspor PDF
 
     // Route::get('form_siswa', function () {
     //     return view('siswa.dashboard');
@@ -138,7 +141,9 @@ Route::middleware(['check.admin'])->group(function () {
     // lihat data siswa
 
 
-
+    // PDF
+    Route::get('/data_siswa/{id}/siswa-generate-pdf', [SiswaController::class, 'generate_pdf_siswa'])->name('generate_pdf_siswa_admin');
+    // PDF
 
 
 

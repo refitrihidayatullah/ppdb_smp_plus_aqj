@@ -1510,10 +1510,13 @@
                             <hr>
 
                             <h4> Opsi</h4>
-                            <a href="#">
-                                <button type="button" class="btn mt-2 mb-2 btn-primary btn-block">Formulir
-                                    Pendaftaran</button>
-                            </a>
+
+
+
+                            <a href="{{ route('generate_pdf_siswa_admin', $siswa->id) }}" type="button"
+                                class="btn mt-2 mb-2 btn-primary btn-block"> Download Formulir
+                                Pendaftaran</a>
+
                             <button type="button" class="btn mt-2 mb-2 btn-primary btn-block" data-toggle="modal"
                                 data-target="#pengaturan_akun">Pengaturan Akun</button>
                             <hr>

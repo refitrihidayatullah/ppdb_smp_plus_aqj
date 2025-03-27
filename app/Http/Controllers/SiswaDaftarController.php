@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Yajra\DataTables\DataTables;
 use Illuminate\Validation\ValidationException;
+use PDF;
 
 
 class SiswaDaftarController extends Controller
@@ -20,7 +21,19 @@ class SiswaDaftarController extends Controller
     public function index()
     {
         //load data siswa berdasarkan user login
-        $siswa = Siswa::where('id', Auth::guard('siswa')->user()->id)->first();
+        $siswa = Siswa::select('siswas.*')
+            ->leftJoin('indonesia_provinces as ip', 'siswas.alamat_provinsi', '=', 'ip.code')
+            ->leftJoin('indonesia_cities as ic', 'siswas.alamat_kabupaten', '=', 'ic.code')
+            ->leftJoin('indonesia_districts as idt', 'siswas.alamat_kecamatan', '=', 'idt.code')
+            ->leftJoin('indonesia_villages as iv', 'siswas.alamat_desa', '=', 'iv.code')
+            ->addSelect([
+                'ip.name as nama_provinsi',
+                'ic.name as nama_kabupaten',
+                'idt.name as nama_kecamatan',
+                'iv.name as nama_desa'
+            ])
+            ->where('siswas.id', Auth::guard('siswa')->user()->id)
+            ->first();
         // dd($siswa);
         return view('siswa.dashboard', compact('siswa'));
 
@@ -650,44 +663,7 @@ class SiswaDaftarController extends Controller
         }
     }
 
-    // public function send_status_daftar(Request $request)
-    // {
-    //     // Validate the incoming request data
-    //     $validatedData = $request->validate([
-    //         'status_selesai' => 'required|string',
-    //         // 'status_validasi' => 'required|string',
-    //     ]);
 
-    //     // Find the Siswa record to update
-    //     $siswa = Siswa::find(Auth::guard('siswa')->user()->id); // Assuming you have a siswa_id in the form
-
-    //     if (!$siswa) {
-    //         return response()->json([
-    //             'status' => 'error',
-    //             'message' => 'Siswa not found.',
-    //         ], 404);
-    //     }
-
-    //     // Update the Siswa record
-    //     $siswa_update = [
-    //         'status_selesai' => $validatedData['status_selesai'],
-    //         // 'status_validasi' => $validatedData['status_validasi'],
-
-    //     ];
-
-
-    //     $siswa->update($siswa_update);
-
-    //     return response()->json([
-    //         'status' => 'success',
-    //         'message' => 'Status Sudah Berubah',
-    //         'data' => $validatedData,
-    //         'redirect' => redirect(route('dashboard_siswa')),
-    //     ]);
-    //     // return r;
-
-
-    // }
 
     public function send_status_daftar(Request $request)
     {
@@ -715,63 +691,43 @@ class SiswaDaftarController extends Controller
 
 
 
-    /**
-     * Show the form for creating a new resource.
-     */
-
-
-    public function send_domisili_siswa(Request $request)
+    public function generate_pdf()
     {
+        //load data siswa berdasarkan user login
+        $siswa = Siswa::select('siswas.*')
+            ->leftJoin('indonesia_provinces as ip', 'siswas.alamat_provinsi', '=', 'ip.code')
+            ->leftJoin('indonesia_cities as ic', 'siswas.alamat_kabupaten', '=', 'ic.code')
+            ->leftJoin('indonesia_districts as idt', 'siswas.alamat_kecamatan', '=', 'idt.code')
+            ->leftJoin('indonesia_villages as iv', 'siswas.alamat_desa', '=', 'iv.code')
+            ->addSelect([
+                'ip.name as nama_provinsi',
+                'ic.name as nama_kabupaten',
+                'idt.name as nama_kecamatan',
+                'iv.name as nama_desa'
+            ])
+            ->where('siswas.id', Auth::guard('siswa')->user()->id)
+            ->first();
+        // cek sudah selesai isi belum
+        if ($siswa->status_selesai == 'Belum Selesai') {
+            return redirect()->route('dashboard_siswa');
+        } else {
 
+            $data = [
+                'title' => 'Formulir SPMB SMPP Al-Qodiri Jember',
+                'siswa' => $siswa
 
+            ];
+            $pdf = PDF::loadView('pdf.form_siswa', $data);
+            return $pdf->download('form_data_siswa' . $data['siswa']->nama_siswa . '.pdf');
+            // dd($siswa);
+            // return view('siswa.dashboard', compact('siswa'));
+        }
 
 
 
     }
-    public function create()
-    {
 
 
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

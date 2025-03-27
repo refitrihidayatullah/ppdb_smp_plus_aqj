@@ -92,7 +92,8 @@
                         <!-- Kolom untuk tombol download -->
                         <div class="col-12 col-md-4 d-flex justify-content-center justify-content-md-end">
                             @if($siswa->status_selesai == 'Sudah Selesai')
-                                <button type="button" class="btn btn-primary" data-mdb-ripple-init>Download Formulir</button>
+                                <a href="{{ route('generate_pdf') }}" role="button" class="btn btn-primary"
+                                    data-mdb-ripple-init>Download Formulir</a>
                             @else
                                 {{-- <span class="badge bg-success">Sudah Selesai</span> --}}
                             @endif
@@ -203,29 +204,29 @@
                                     <div class="ms-3 mt-2">
                                         <div class="form-item">
                                             <strong>Desa/Kelurahan :</strong> <span class="placeholder-text">
-                                                << Alamat (Desa/Kelurahan)>>
+                                                {{ $siswa->nama_desa }}
                                             </span>
                                         </div>
                                         <div class="form-item">
                                             <strong>Kecamatan :</strong> <span class="placeholder-text">
-                                                << Kecamatan>>
+                                                {{ $siswa->nama_kecamatan }}
                                             </span>
                                         </div>
                                         <div class="form-item">
                                             <strong>Kabupaten :</strong> <span class="placeholder-text">
-                                                << Kabupaten>>
+                                                {{ $siswa->nama_kabupaten }}
                                             </span>
                                         </div>
                                         <div class="form-item">
                                             <strong>Provinsi :</strong> <span class="placeholder-text">
-                                                << Provinsi>>
+                                                {{ $siswa->nama_provinsi }}
                                             </span>
                                         </div>
-                                        <div class="form-item">
+                                        {{-- <div class="form-item">
                                             <strong>Kode Pos :</strong> <span class="placeholder-text">
                                                 << Kode Pos>>
                                             </span>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                                 {{-- <div class="form-item">
