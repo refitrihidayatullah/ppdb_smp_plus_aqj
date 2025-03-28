@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Yajra\DataTables\DataTables;
 use Illuminate\Validation\ValidationException;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ExportSiswa;
 
 class SiswaController extends Controller
 {
@@ -194,6 +196,18 @@ class SiswaController extends Controller
                 'errors' => $e->validator->errors(),
             ], 422);
         }
+    }
+
+    public function ekspor_excel()
+    {
+        $tahun = Siswa::select('tahun_daftar')->distinct()->get();
+        // dd($tahun);
+        return view('data_siswa.ekspor', compact('tahun'));
+    }
+
+    public function ekspor_excel_tahun(Request $request)
+    {
+        return (new ExportSiswa)->forYear($request->tahun_daftar)->download('siswa.xlsx');
     }
 
     /**

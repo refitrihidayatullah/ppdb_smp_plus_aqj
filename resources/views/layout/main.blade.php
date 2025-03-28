@@ -12,42 +12,47 @@
     <!-- theme meta -->
     <meta name="theme-name" content="quixlab" />
 
-    <title>@yield('title' , 'SPMB SMP Plus Al-Qodiri Jember')</title>
+    <title>@yield('title', 'SPMB SMP Plus Al-Qodiri Jember')</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('landing-page/img/logo-smp.png')}}">
     <!-- Pignose Calender -->
     <link href="{{ asset('dashboard/plugins/pg-calendar/css/pignose.calendar.min.css') }}" rel="stylesheet">
     <!-- Chartist -->
     <link rel="stylesheet" href="{{ asset('dashboard/plugins/chartist/css/chartist.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('dashboard/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('dashboard/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css') }}">
     <!-- Custom Stylesheet -->
     <link href="{{ asset('dashboard/css/style.css') }}" rel="stylesheet">
 
     {{-- jquery --}}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     {{-- jquery --}}
 
     {{-- font awesome --}}
     <script src="https://kit.fontawesome.com/6e0c65f34f.js" crossorigin="anonymous"></script>
 
-    {{-- datatable  --}}
-    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"> --}}
+    {{-- datatable --}}
+    {{--
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"> --}}
 
-    {{-- datatable  --}}
+    {{-- datatable --}}
 
 
     {{-- toastr --}}
-     <!-- Toastr CSS -->
+    <!-- Toastr CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
     <!-- Toastr JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-     {{-- toastr --}}
+    {{-- toastr --}}
 
     {{-- google font --}}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
     {{-- google font --}}
 
@@ -79,7 +84,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header" style="background-color: #022277;">
-           <div class="brand-logo">
+            <div class="brand-logo">
                 <a href="{{ route('dashboard') }}">
                     <b class="logo-abbr"><img src="{{asset('landing-page/img/logo-smp.png')}}" alt=""></b>
                     <span class="logo-compact"><img src="{{asset('landing-page/img/logo-smp.png')}}" alt=""></span>
@@ -112,7 +117,7 @@
                     <ul class="clearfix">
 
                         <li class="icons dropdown">
-                            <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
+                            <div class="user-img c-pointer position-relative" data-toggle="dropdown">
                                 <span class="activity active"></span>
                                 <img src="{{ asset('dashboard/images/user/1.png') }}" height="40" width="40" alt="">
                             </div>
@@ -120,19 +125,21 @@
                                 <div class="dropdown-content-body">
                                     <ul>
                                         <li>
-                                            <a href="app-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
+                                            <a href="app-profile.html"><i class="icon-user"></i>
+                                                <span>Profile</span></a>
                                         </li>
 
 
                                         <hr class="my-2">
 
                                         <li>
-                                            {{-- <a href="{{ route('logout') }}"><i class="icon-key"></i> <span>Logout</span></a> --}}
+                                            {{-- <a href="{{ route('logout') }}"><i class="icon-key"></i>
+                                                <span>Logout</span></a> --}}
 
-                                        <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                                                             @csrf
-                                         <button type="submit" class="btn btn-danger">Logout</button>
-                                        </form>
+                                            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger">Logout</button>
+                                            </form>
 
 
                                         </li>
@@ -155,7 +162,7 @@
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
                     <li class="nav-label">Dashboard</li>
-                       <li>
+                    <li>
                         <a href="{{ route('dashboard') }}" aria-expanded="false">
                             <i class="fa-solid fa-gauge"></i><span class="nav-text">Dashboard</span>
                         </a>
@@ -166,7 +173,7 @@
 
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                           <i class="fa-solid fa-users"></i><span class="nav-text">Akun Administator</span>
+                            <i class="fa-solid fa-users"></i><span class="nav-text">Akun Administator</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{ route('users') }}">Data Akun Admin</a></li>
@@ -177,12 +184,12 @@
                     <li class="nav-label">Data Siswa</li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                           <i class="fa-solid fa-list"></i><span class="nav-text">Data Siswa Terdaftar</span>
+                            <i class="fa-solid fa-list"></i><span class="nav-text">Data Siswa Terdaftar</span>
                         </a>
                         <ul aria-expanded="false">
-                             <li><a href="{{ route('tambah_siswa') }}">Tambah Akun Siswa</a></li>
+                            <li><a href="{{ route('tambah_siswa') }}">Tambah Akun Siswa</a></li>
                             <li><a href="{{ route('data_siswa')}}">Lihat Data Siswa</a></li>
-                            <li><a href="./ui-alert.html">Ekspor Data</a></li>
+                            <li><a href="{{ route('ekspor_excel') }}">Ekspor Data</a></li>
 
                         </ul>
                     </li>
@@ -191,7 +198,7 @@
                             <i class="icon-badge menu-icon"></i><span class="nav-text">Widget</span>
                         </a>
                     </li> --}}
-                    <li class="nav-label">Setting</li>
+                    {{-- <li class="nav-label">Setting</li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-note menu-icon"></i><span class="nav-text">Forms</span>
@@ -203,8 +210,8 @@
                             <li><a href="./form-editor.html">Editor</a></li>
                             <li><a href="./form-picker.html">Picker</a></li>
                         </ul>
-                    </li>
-                    <li class="nav-label">Table</li>
+                    </li> --}}
+                    {{-- <li class="nav-label">Table</li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-menu menu-icon"></i><span class="nav-text">Table</span>
@@ -213,8 +220,8 @@
                             <li><a href="./table-basic.html" aria-expanded="false">Basic Table</a></li>
                             <li><a href="./table-datatable.html" aria-expanded="false">Data Table</a></li>
                         </ul>
-                    </li>
-                    <li class="nav-label">Pages</li>
+                    </li> --}}
+                    {{-- <li class="nav-label">Pages</li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-notebook menu-icon"></i><span class="nav-text">Pages</span>
@@ -233,17 +240,17 @@
                                 </ul>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>
         <!--**********************************
             Sidebar end
         ***********************************-->
-{{-- lokasi konten --}}
+        {{-- lokasi konten --}}
 
-@yield('content');
-{{-- ending lokasi konten --}}
+        @yield('content');
+        {{-- ending lokasi konten --}}
 
 
 
@@ -252,7 +259,8 @@
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>SPMB SMP Plus Al-Qodiri Jember &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+                <p>SPMB SMP Plus Al-Qodiri Jember &copy; Designed & Developed by <a
+                        href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
             </div>
         </div>
         <!--**********************************
@@ -300,8 +308,10 @@
     <script src="{{ asset('dashboard/plugins/tables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('dashboard/plugins/tables/js/datatable/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('dashboard/plugins/tables/js/datatable-init/datatable-basic.min.js') }}"></script>
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
-    {{-- <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script> --}}
+    {{--
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+    {{--
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script> --}}
     {{-- datatable --}}
 
 </body>

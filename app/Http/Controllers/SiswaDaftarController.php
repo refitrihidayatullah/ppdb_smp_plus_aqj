@@ -13,6 +13,7 @@ use Illuminate\Validation\ValidationException;
 use PDF;
 
 
+
 class SiswaDaftarController extends Controller
 {
     /**

@@ -112,6 +112,7 @@ Route::middleware(['check.admin'])->group(function () {
     Route::get('/data_siswa/{id}/edit', [SiswaController::class, 'edit'])->name('siswa.edit');
     Route::put('/data_siswa/{id}', [SiswaController::class, 'update'])->name('siswa.update');
     Route::delete('/data_siswa/delete/{id}', [SiswaController::class, 'destroy'])->name('siswa.destroy');
+
     // Get Json list Data Siswa
     Route::get('/get_siswa', [SiswaController::class, 'get_siswa'])->name('get_siswa');
 
@@ -144,8 +145,9 @@ Route::middleware(['check.admin'])->group(function () {
     // PDF
     Route::get('/data_siswa/{id}/siswa-generate-pdf', [SiswaController::class, 'generate_pdf_siswa'])->name('generate_pdf_siswa_admin');
     // PDF
-
-
+    // ekspor data siswa pertahun
+    Route::get('/data_siswa/ekspor_excel', [SiswaController::class, 'ekspor_excel'])->name('ekspor_excel');
+    Route::post('/data_siswa/ekspor_excel_proses', [SiswaController::class, 'ekspor_excel_tahun'])->name('ekspor_excel_process');
 
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
