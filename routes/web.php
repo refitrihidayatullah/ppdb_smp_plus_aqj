@@ -173,3 +173,9 @@ Route::get('/cari-sekolah/action', [SekolahController::class, 'cariSekolah'])->n
 
 // ROUTES untuk mencari sekolah by NPSN
 // testing blade
+
+Route::get('/clear', function () {
+    $exitCode = Artisan::call('optimize:clear');
+    echo "cache udah di clear";
+    // return what you want
+});
