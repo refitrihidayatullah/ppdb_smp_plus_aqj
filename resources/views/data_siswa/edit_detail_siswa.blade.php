@@ -1426,9 +1426,14 @@
                             <h4> Berkas Pendaftaran </h4>
                             <hr>
                             <small>Foto Siswa </small>
-                            <img id="preview_image" src="{{asset('uploads/foto_siswa/' . $siswa->foto_siswa)}}"
-                                alt="{{ $siswa->nama_siswa }} " style="max-width: 100%; height: auto;"
-                                class="img-thumbnail d-block mx-auto">
+                            <img id="preview_image" src="
+                                                    @if ($siswa->foto_siswa == '')
+                                                         {{ asset('asset/user.png') }}
+                                                    @else
+                                                         {{asset('uploads/foto_siswa/' . $siswa->foto_siswa)}}
+                                                    @endif
+                                                    " alt="{{ $siswa->nama_siswa }} "
+                                style="max-width: 100%; height: auto;" class="img-thumbnail d-block mx-auto">
                             <form class="form_upload_foto" action="{{ route('upload_foto_siswa') }}"
                                 enctype="multipart/form-data" method="post" accept-charset="utf-8"> @csrf
                                 <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
@@ -1437,8 +1442,13 @@
                             </form>
 
                             <small> Kartu Keluarga </small>
-                            <img id="preview_kk" src="{{ asset('uploads/kartu_keluarga/' . $siswa->kartu_keluarga) }}"
-                                alt="{{ $siswa->kartu_keluarga }} " style="max-width: 100%; height: auto;"
+                            <img id="preview_kk" src="
+                                            @if ($siswa->kartu_keluarga == '')
+                                                 {{ asset('asset/doc.png') }}
+                                            @else
+                                                   {{ asset('uploads/kartu_keluarga/' . $siswa->kartu_keluarga) }}
+                                            @endif
+                                        " alt="{{ $siswa->kartu_keluarga }} " style="max-width: 100%; height: auto;"
                                 class="img-thumbnail d-block mx-auto">
                             <form class="form_upload_kk" action="{{ route('upload_kk') }}" enctype="multipart/form-data"
                                 method="post" accept-charset="utf-8"> @csrf
@@ -1449,8 +1459,13 @@
 
 
                             <small> Ijazah SD/MI Sederajat</small>
-                            <img id="preview_ijazah" src="{{ asset('uploads/ijazah/' . $siswa->ijazah_sd_mi) }}"
-                                alt="{{ $siswa->nama_siswa }} " style="max-width: 100%; height: auto;"
+                            <img id="preview_ijazah" src="
+                                         @if ($siswa->ijazah_sd_mi == '')
+                                             {{ asset('asset/doc.png') }}
+                                        @else
+                                             {{ asset('uploads/ijazah/' . $siswa->ijazah_sd_mi) }}
+                                        @endif
+                                      " alt="{{ $siswa->nama_siswa }} " style="max-width: 100%; height: auto;"
                                 class="img-thumbnail d-block mx-auto">
                             <form class="form_upload_ijazah" action="{{ route('upload_ijazah') }}"
                                 enctype="multipart/form-data" method="post" accept-charset="utf-8"> @csrf
@@ -1460,8 +1475,13 @@
                             </form>
 
                             <small> KTP Orangtua (salah satu)</small>
-                            <img id="preview_ktp" src="{{ asset('uploads/ktp/' . $siswa->ktp_orang_tua) }}"
-                                alt="{{ $siswa->nama_siswa }} " style="max-width: 100%; height: auto;"
+                            <img id="preview_ktp" src="
+                                     @if ($siswa->ktp_orang_tua == '')
+                                         {{ asset('asset/doc.png') }}
+                                    @else
+                                         {{ asset('uploads/ktp/' . $siswa->ktp_orang_tua) }}
+                                    @endif
+                                   " alt="{{ $siswa->nama_siswa }} " style="max-width: 100%; height: auto;"
                                 class="img-thumbnail d-block mx-auto">
                             <form class="form_upload_ktp" action="{{ route('upload_ktp') }}" enctype="multipart/form-data"
                                 method="post" accept-charset="utf-8"> @csrf

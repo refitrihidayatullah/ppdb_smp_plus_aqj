@@ -124,10 +124,10 @@
                             <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                                 <div class="dropdown-content-body">
                                     <ul>
-                                        <li>
+                                        {{-- <li>
                                             <a href="app-profile.html"><i class="icon-user"></i>
                                                 <span>Profile</span></a>
-                                        </li>
+                                        </li> --}}
 
 
                                         <hr class="my-2">

@@ -76,7 +76,13 @@
                     <div class="row justify-content-between align-items-center flex-column flex-md-row">
                         <!-- Kolom untuk gambar dan nama siswa -->
                         <div class="col-12 col-md-4 d-flex align-items-center mb-3 mb-md-0">
-                            <img src="{{asset('uploads/foto_siswa/' . $siswa->foto_siswa)}}" class="img-fluid"
+                            <img src="
+                                                        @if ($siswa->foto_siswa == '')
+                                                            {{ asset('asset/user.png') }}
+                                                        @else
+                                                               {{asset('uploads/foto_siswa/' . $siswa->foto_siswa)}}
+                                                        @endif
+                                                        " class="img-fluid"
                                 style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover; margin-right: 10px;"
                                 alt="Townhouses and Skyscrapers" />
                             <div>
@@ -1602,8 +1608,11 @@
                                     <div class="accordion-body">
 
                                         <label class="form-label" for="customFile">Foto Siswa</label>
-                                        <img id="preview_image" src="{{asset('uploads/foto_siswa/' . $siswa->foto_siswa)}}"
-                                            alt="{{ $siswa->nama_siswa }} " style="max-width: 30%; height: auto;"
+                                        <img id="preview_image" src=" @if ($siswa->foto_siswa == '')
+                                             {{ asset('asset/user.png') }}
+                                        @else
+                                             {{asset('uploads/foto_siswa/' . $siswa->foto_siswa)}}
+                                        @endif" alt="{{ $siswa->nama_siswa }} " style="max-width: 30%; height: auto;"
                                             class="img-thumbnail d-block mx-auto">
                                         <form class="form_upload_foto" action="{{ route('siswa_upload_foto_siswa') }}"
                                             enctype="multipart/form-data" method="post" accept-charset="utf-8"> @csrf
@@ -1616,10 +1625,12 @@
 
                                         <br>
                                         <label class="form-label" for="customFile">Kartu Keluarga</label>
-                                        <img id="preview_kk"
-                                            src="{{ asset('uploads/kartu_keluarga/' . $siswa->kartu_keluarga) }}"
-                                            alt="{{ $siswa->kartu_keluarga }} " style="max-width: 30%; height: auto;"
-                                            class="img-thumbnail d-block mx-auto">
+                                        <img id="preview_kk" src="@if ($siswa->kartu_keluarga == '')
+                                             {{ asset('asset/doc.png') }}
+                                        @else
+                                               {{ asset('uploads/kartu_keluarga/' . $siswa->kartu_keluarga) }}
+                                        @endif" alt="{{ $siswa->kartu_keluarga }} "
+                                            style="max-width: 30%; height: auto;" class="img-thumbnail d-block mx-auto">
                                         <form class="form_upload_kk" action="{{ route('siswa_upload_kk') }}"
                                             enctype="multipart/form-data" method="post" accept-charset="utf-8"> @csrf
                                             <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
@@ -1629,8 +1640,11 @@
 
 
                                         <label class="form-label" for="customFile">Ijazah SD/MI Sederajat</label>
-                                        <img id="preview_ijazah" src="{{ asset('uploads/ijazah/' . $siswa->ijazah_sd_mi) }}"
-                                            alt="{{ $siswa->nama_siswa }} " style="max-width: 30%; height: auto;"
+                                        <img id="preview_ijazah" src="  @if ($siswa->ijazah_sd_mi == '')
+                                             {{ asset('asset/doc.png') }}
+                                        @else
+                                             {{ asset('uploads/ijazah/' . $siswa->ijazah_sd_mi) }}
+                                        @endif" alt="{{ $siswa->nama_siswa }} " style="max-width: 30%; height: auto;"
                                             class="img-thumbnail d-block mx-auto">
                                         <form class="form_upload_ijazah" action="{{ route('siswa_upload_ijazah') }}"
                                             enctype="multipart/form-data" method="post" accept-charset="utf-8"> @csrf
@@ -1641,8 +1655,11 @@
 
 
                                         <label class="form-label" for="customFile">KTP Orangtua (salah satu)</label>
-                                        <img id="preview_ktp" src="{{ asset('uploads/ktp/' . $siswa->ktp_orang_tua) }}"
-                                            alt="{{ $siswa->nama_siswa }} " style="max-width: 30%; height: auto;"
+                                        <img id="preview_ktp" src="@if ($siswa->ktp_orang_tua == '')
+                                             {{ asset('asset/doc.png') }}
+                                        @else
+                                             {{ asset('uploads/ktp/' . $siswa->ktp_orang_tua) }}
+                                        @endif" alt="{{ $siswa->nama_siswa }} " style="max-width: 30%; height: auto;"
                                             class="img-thumbnail d-block mx-auto">
                                         <form class="form_upload_ktp" action="{{ route('siswa_upload_ktp') }}"
                                             enctype="multipart/form-data" method="post" accept-charset="utf-8"> @csrf

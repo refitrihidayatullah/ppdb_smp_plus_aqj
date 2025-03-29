@@ -46,7 +46,16 @@ class SiswaController extends Controller
                 return $row->tempat_lahir . ', ' . $row->tanggal_lahir;
             })
             ->addColumn('foto', function ($row) {
-                return '<img src="' . asset('uploads/foto_siswa/' . $row->foto_siswa) . '" alt="Foto Siswa" style="width: 50px; height: 50px; border-radius: 50%;">';
+                if ($row->foto_siswa == '') {
+                    $image = asset('asset/user.png');
+                } else {
+                    $image = asset('uploads/foto_siswa/' . $row->foto_siswa);
+                }
+                ;
+
+
+                return '<img src="' .
+                    $image . '" alt="Foto Siswa" style="width: 50px; height: 50px; border-radius: 50%;">';
             })
 
             ->addColumn('status', function ($row) {
