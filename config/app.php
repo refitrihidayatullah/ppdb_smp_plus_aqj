@@ -163,6 +163,10 @@ return [
         /*
          * Application Service Providers...
          */
+
+        // RalphJSmit\Laravel\SEO\SEOServiceProvider::class,
+        // RalphJSmith\Laravel\SEOServiceProvider::class,
+
         Barryvdh\DomPDF\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         App\Providers\AppServiceProvider::class,
@@ -187,6 +191,7 @@ return [
         // 'Example' => App\Facades\Example::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'SEO' => RalphJSmit\Laravel\SEO\Facades\SEO::class,
 
 
     ])->toArray(),

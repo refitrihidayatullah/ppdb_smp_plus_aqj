@@ -75,8 +75,9 @@
                     <p class="lead">Di SMP Plus Al-Qodiri Jember, kita mencetak peserta didik yang berakhlakul karimah,
                         berjiwa Qur'ani, dan terampil dalam berteknologi untuk masa depan yang gemilang.</p>
                     <div class="d-grid gap-2 d-md-flex justify-content-center justify-content-md-start">
-                        <button type="button" class="btn btn-lg btn-light btn-lg px-4 me-md-2" style="color: #022377">Daftar
-                            Sekarang</button>
+                        <a href="{{route('auth')}}" type="button" class="btn btn-lg btn-light btn-lg px-4 me-md-2"
+                            style="color: #022377">Daftar
+                            Sekarang</a>
                     </div>
                 </div>
             </div>

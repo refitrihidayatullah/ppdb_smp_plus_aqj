@@ -12,7 +12,7 @@ use App\Http\Controllers\TestingAjah;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WilayahController;
 use Illuminate\Support\Facades\Route;
-
+use RalphJSmit\Laravel\SEO\Support\Sitemap;
 
 
 
@@ -178,4 +178,34 @@ Route::get('/clear', function () {
     $exitCode = Artisan::call('optimize:clear');
     echo "cache udah di clear";
     // return what you want
+});
+
+
+// SEO
+Route::get('/sitemap.xml', function () {
+    return response()->view('seo.sitemap', [
+        'pages' => [
+            ['url' => route('home'), 'priority' => 1.0],
+            ['url' => route('auth'), 'priority' => 0.9],
+        ]
+    ])->header('Content-Type', 'application/xml');
+});
+
+
+Route::get('/robots.txt', function () {
+    $content = implode("\n", [
+        "# Robots.txt untuk SMP Plus Al-Qodiri Jember",
+        "User-agent: *",
+        "Disallow: /admin/",
+        "Disallow: /login/",
+        "Disallow: /dashboard/",
+        "Allow: /img/",
+        "Allow: /css/",
+        "",
+        "# Sitemap",
+        "Sitemap: " . url('/sitemap.xml')
+    ]);
+
+    return Response::make($content)
+        ->header('Content-Type', 'text/plain');
 });
