@@ -133,15 +133,39 @@
         </div>
     </section>
     <!-- end tentang kami -->
+    <section id="visi_misi" class="py-5">
+        <h1 class="text-center fw-bold mb-5 mt-5">Visi dan Misi</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="fw-bold">Visi</h2>
+                    <p>Mencetak Peserta Didik Yang Berakhlaqul Karimah, Berjiwa Qur'ani dan Terampil Dalam Berteknologi.</p>
 
+                </div>
+                <div class="col-md-6">
+                    <h2 class="fw-bold">Misi</h2>
+                    <ul>
+                        <li>Peserta Didik Memiliki Aqidah Yang Lurus, Ibadah Yang Benar dan Akhlaq Yang Mulia.</li>
+                        <li>Mencetak Generasi Qur'ani Yang Mandiri, Berjiwa Pemimpin, Cerdas Visioner dan Berwawasan Luas
+                            Sebagai Pakaian Sehari-hari.</li>
+                        <li>Untuk Menghasilkan Lulusan Yang Terampil dalam berteknologi Untuk Bersaing Secara Global.</li>
+                        <li>Menanamkan cinta tanah air dan bangsa melalui pelaksanaan Tri Satya dan Dasa Dharma.</li>
+                        <li>Menumbuh kembangkan rasa percaya diri siswa.</li>
+                        <li>Mengembangkan potensi diri siswa secara maksimal.</li>
+                        <li>Meningkatkan prestasi akademik-non akademik.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- alur pendaftaran online -->
     <section id="alur-pendaftaran" class="py-5">
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUMgaGfB-0yE45WmJQtVha_byZHC1dohZ-8w&s"
-                        width="500" height="300" alt="Alur Pendaftaran" class="img-fluid" />
+                    <img src="{{ asset('landing-page/img/header_new.png') }}" width="500" height="300"
+                        alt="Alur Pendaftaran" class="img-fluid" />
                 </div>
                 <div class="col-md-6">
                     <h1 class="text-center fw-bold mb-5">Alur <span class="fw-bold"
@@ -200,7 +224,7 @@
                 <div class="col-md-6">
                     <h2 class="fw-bold mb-3">Contact Person Panitia PPDB <span style="color: #022377" class="fw-bold">SMP
                             Plus Al-Qodiri Jember</span></h2>
-                    <ul class="text-dark list-unstyled">
+                    {{-- <ul class="text-dark list-unstyled">
                         <li class="mb-3">
                             <a href="https://wa.me/6281234567890" class="text-dark"> <i class="fab fa-whatsapp"></i> +62
                                 812-3456-7890 (Bapak Ahmad) </a>
@@ -209,13 +233,14 @@
                             <a href="https://wa.me/6280987654321" class="text-dark"> <i class="fab fa-whatsapp"></i> +62
                                 809-8765-4321 (Ibu Siti) </a>
                         </li>
-                    </ul>
+                    </ul> --}}
                 </div>
                 <div class="col-md-6">
-                    <p><i class="fas fa-map-marker-alt"></i> Jl. Sultan Agung No. 5, Kaliwates, Jember, Jawa Timur, 68136,
-                        Indonesia</p>
-                    <p><i class="fas fa-phone"></i> +62 331 1234567</p>
-                    <p><i class="fas fa-envelope"></i> info@smpalqodirijember.ac.id</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Manggar No. 139 A , Gebang Kec. Patrang Kabupaten Jember
+                        Jawa Timur</p>
+                    <p><i class="fas fa-phone"></i> 0812-3466-3314
+                    </p>
+                    {{-- <p><i class="fas fa-envelope"></i> info@smpalqodirijember.ac.id</p> --}}
                 </div>
             </div>
         </div>
@@ -228,18 +253,18 @@
     <footer style="background-color: #022377" class="text-center text-white">
         <div class="container p-4">
             <section class="mb-4">
-                <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998" href="#!" role="button"><i
-                        class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee" href="#!" role="button"><i
-                        class="fab fa-twitter"></i></a>
-                <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39" href="#!" role="button"><i
-                        class="fab fa-google"></i></a>
-                <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac" href="#!" role="button"><i
-                        class="fab fa-instagram"></i></a>
-                <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca" href="#!" role="button"><i
-                        class="fab fa-linkedin-in"></i></a>
-                <a class="btn btn-primary btn-floating m-1" style="background-color: #333333" href="#!" role="button"><i
-                        class="fab fa-github"></i></a>
+                <a class="btn btn-primary btn-floating m-1" style="background-color:rgb(185, 0, 9)" href="#!"
+                    role="button"><i class="fab fa-youtube"></i></a>
+                <a class="btn btn-dark btn-floating m-1" style="background-color:rgb(0, 0, 0)" href="http://surl.li/chtseb"
+                    role="button"><i class="fab fa-tiktok"></i></a>
+                {{-- <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39" href="#!"
+                    role="button"><i class="fab fa-google"></i></a> --}}
+                <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac" href="http://surl.li/lfinjc"
+                    role="button"><i class="fab fa-instagram"></i></a>
+                {{-- <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca" href="#!"
+                    role="button"><i class="fab fa-linkedin-in"></i></a> --}}
+                {{-- <a class="btn btn-primary btn-floating m-1" style="background-color: #333333" href="#!"
+                    role="button"><i class="fab fa-github"></i></a> --}}
             </section>
         </div>
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
